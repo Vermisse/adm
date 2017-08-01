@@ -1,0 +1,55 @@
+<div th:fragment="nav" class="sticky-header header-section ">
+	<div class="header-left">
+		<!--toggle button start-->
+		<button id="showLeftPush"><i class="fa fa-bars"></i></button>
+		<!--toggle button end-->
+		<!--logo -->
+		<div class="logo">
+			<a href="index.html">
+				<h1>后台管理系统</h1>
+				<span>Management</span>
+			</a>
+		</div>
+		<!--//logo-->
+		<div class="clearfix"></div>
+	</div>
+	<div class="header-right">
+		<!--notification menu end -->
+		<div class="profile_details">		
+			<ul>
+				<li class="dropdown profile_details_drop">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						<div class="profile_img">	
+							<span class="prfil-img"><img th:src="${path + '/commons/images/admin.jpg'}" alt="" /></span> 
+							<div class="user-name">
+								<p th:text="${session.user.real_name}">真实姓名</p>
+								<span th:text="${session.user.user_name}">登录帐号</span>
+							</div>
+							<i class="fa fa-angle-down lnr"></i>
+							<i class="fa fa-angle-up lnr"></i>
+							<div class="clearfix"></div>	
+						</div>	
+					</a>
+					<ul class="dropdown-menu drp-mnu">
+						<!--
+						<li> <a href="#"><i class="fa fa-cog"></i> 设置</a> </li>
+						<li> <a href="#"><i class="fa fa-user"></i> 个人信息</a> </li>
+						 -->
+						<li>
+							<a th:href="${path} + '/password.html'">
+								<i class="fa fa-user"></i> 密码修改
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" id="logout">
+								<i class="fa fa-sign-out"></i> 退出登录
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="clearfix"></div>				
+	</div>
+	<div class="clearfix"></div>	
+</div>

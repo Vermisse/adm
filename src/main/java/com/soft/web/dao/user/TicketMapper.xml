@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.soft.web.dao.user.TicketMapper">
+	
+	<select id="queryTickets" resultType="java.util.Map">
+		select t.ticket_id,t.ticket_name,t.ticket_price,t.filepath,t.state,t.create_date
+		from tickets t
+		where 1 = 1
+		<if test="ticket_name != null and ticket_name != ''">
+			and t.ticket_name like concat('%',#{ticket_name},'%')
+		</if>
+		<if test="ticket_price != null">
+			and t.ticket_price = #{ticket_price}
+		</if>
+		<if test="state != null and state != ''">
+			and state = #{state}
+		</if>
+		order by t.ticket_id desc
+	</select>
+	<insert id="save">
+		insert into tickets(ticket_name, ticket_price, filepath, state, create_date)
+		values(#{ticket_name}, #{ticket_price}, #{filepath}, 0, current_date)
+	</insert>
+	<update id="edit">
+		update tickets t set state = 1 - state where t.ticket_id = #{ticket_id}
+	</update>
+</mapper>

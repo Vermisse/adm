@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:substituteby='base/head :: head (${"门票新增"})'></head>
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+		<!--left-fixed -navigation-->
+		<div th:substituteby='base/menu :: menu'></div>
+		<!--left-fixed -navigation-->
+		<!-- header-starts -->
+		<div th:substituteby='base/nav :: nav'></div>
+		<!-- //header-ends -->
+		<!-- main content start-->
+		<div id="page-wrapper">
+			<form action="save.html" method="post">
+				<div class="main-page signup-page">
+					<h3 class="title1">门票新增</h3>
+					<div class="sign-up-row widget-shadow">
+						<div class="sign-u">
+							<div class="sign-up1">
+								<h4>门票名称：</h4>
+							</div>
+							<div class="sign-up2">
+								<input type="text" name="ticket_name" placeholder="门票名称" maxlength="50" required />
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="sign-u">
+							<div class="sign-up1">
+								<h4>门票价格：</h4>
+							</div>
+							<div class="sign-up2">
+								<input type="number" name="ticket_price" placeholder="门票价格" required />
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="sign-u">
+							<div class="sign-up1">
+								<h4>上传图片：</h4>
+							</div>
+							<div class="sign-up2">
+								<h4>
+									<a href="javascript:void(0);" onclick="chose()">
+										<span class="label label-primary"
+											onmouseover="$(this).addClass('label-info');"
+											onmouseout="$(this).removeClass('label-info');">点击上传</span>
+									</a>
+								</h4>
+								<input type="file" name="file" style="display:none;" />
+								<input type="hidden" name="filepath" />
+								<img src="" data-action="zoom" style="height:40px; display:none;" />
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="sub_home">
+							<input type="submit" value="提交" />
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var chose = function() {
+		$("form .sign-u input[type='file']").val("").click();
+	}
+
+	$("input[type='file']").change(function() {
+		var rgx = "(.jpg|.gif|.png|.webp)$";
+		var re = new RegExp(rgx);
+		if (!re.test($(this).val())) {
+			alert("图片格式不正确，只能上传.jpg|.gif|.png|.webp格式图片");
+			$(this).val("");
+			return;
+		}
+
+		$.ajax({
+			type : "POST",
+			url : "../upload.html",
+			contentType : false,
+			processData : false,
+			data : new FormData($("form")[0]),
+			cache : false,
+			success : function(data) {
+				$("form .sign-u img").attr("src", "../upload/file/" + data);
+				$("form .sign-u img").show();
+				$("form .sign-u input[name='filepath']").val(data);
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				alert("上传失败，请检查网络后重试");
+			}
+		});
+	});
+	
+	$("input[type='submit']").click(function() {
+		if($("form .sign-u input[name='filepath']").val() == ""){
+			alert("请上传图片");
+			return false;
+		}
+		return true;
+	});
+</script>
+</html>

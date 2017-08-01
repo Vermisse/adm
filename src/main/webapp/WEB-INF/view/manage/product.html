@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:substituteby='base/head :: head (${"产品管理"})'></head>
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+		<!--left-fixed -navigation-->
+		<div th:substituteby='base/menu :: menu'></div>
+		<!--left-fixed -navigation-->
+		<!-- header-starts -->
+		<div th:substituteby='base/nav :: nav'></div>
+		<!-- //header-ends -->
+		<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page">
+				<h3 class="title1">产品管理</h3>
+				<div class="tables">
+					<div class="bs-example widget-shadow grids" data-example-id="contextual-table">
+						<form action="list.html" method="post">
+							<div class="form-group mb-n">
+								<div class="row">
+									<div class="col-md-4 grid_box1">
+										<input type="text" name="ticket_name" class="form-control1" placeholder="门票名称">
+									</div>
+									<div class="col-md-4 grid_box1">
+										<input type="number" name="ticket_price" class="form-control1" placeholder="门票价格">
+									</div>
+									<div class="col-md-4 grid_box1">
+										<select name="state" class="form-control1">
+											<option value="">全部状态</option>
+											<option value="1">可用</option>
+											<option value="0">不可用</option>
+										</select>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="row">
+									<div class="col-md-1 grid_box1">
+										<h4>
+											<a href="javascript:void(0);" onclick="$('form').submit();">
+												<span class="label label-primary"
+													onmouseover="$(this).addClass('label-success');"
+													onmouseout="$(this).removeClass('label-success');">查询</span>
+											</a>
+										</h4>
+									</div>
+									<div class="col-md-1 grid_box1">
+										<h4>
+											<a href="add.html">
+												<span class="label label-info"
+													onmouseover="$(this).addClass('label-warning');"
+													onmouseout="$(this).removeClass('label-warning');">新增</span>
+											</a>
+										</h4>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</form>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>门票名称</th>
+									<th>门票价格</th>
+									<th>门票预览</th>
+									<th>是否可用</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="item,stat : ${list}" th:class="${stat.count % 2 == 1 ? 'active' : ''}"
+									onmouseover="$(this).addClass('success');"
+									onmouseout="$(this).removeClass('success');">
+									<th scope="row" th:text="${stat.count}">1</th>
+									<td th:text="${item.ticket_name}">门票名称</td>
+									<td th:text="${item.ticket_price}">门票价格</td>
+									<td>
+										<img th:src="${path + '/upload/file/' + item.filepath}" data-action="zoom" style="height:40px;" />
+									</td>
+									<td th:text="${item.state == 1 ? '可用' : '不可用'}">是否可用</td>
+									<td>
+										<a href="javascript:void(0);" th:onclick="'edit(\'' + ${item.ticket_id} + '\')'">
+											<span class="label label-success"
+												onmouseover="$(this).addClass('label-danger');"
+												onmouseout="$(this).removeClass('label-danger');"
+												th:text="${item.state == 0 ? '启用' : '禁用'}">启用</span>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var edit = function(n) {
+		window.location.href = "edit.html?ticket_id=" + n;
+	}
+</script>
+</html>

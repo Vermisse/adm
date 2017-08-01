@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:substituteby='base/head :: head (${"轮播图管理"})'></head>
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+		<!--left-fixed -navigation-->
+		<div th:substituteby='base/menu :: menu'></div>
+		<!--left-fixed -navigation-->
+		<!-- header-starts -->
+		<div th:substituteby='base/nav :: nav'></div>
+		<!-- //header-ends -->
+		<!-- main content start-->
+		<div id="page-wrapper">
+			<div class="main-page">
+				<h3 class="title1">轮播图管理</h3>
+				<div class="tables">
+					<div class="bs-example widget-shadow" data-example-id="contextual-table">
+						<form action="fileUpload.html" method="post" enctype="multipart/form-data">
+							<h4>
+								<a href="javascript:void(0);" onclick="$(this).next().click();">
+									<span class="label label-primary"
+										onmouseover="$(this).addClass('label-info');"
+										onmouseout="$(this).removeClass('label-info');">点击上传</span>
+								</a>
+								<input type="file" name="file" style="display:none;" />
+							</h4>
+						</form>
+						<table class="table">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>图片</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="item,stat : ${banners}" th:class="${stat.count % 2 == 1 ? 'active' : ''}"
+									onmouseover="$(this).addClass('success');"
+									onmouseout="$(this).removeClass('success');">
+									<th scope="row" th:text="${stat.count}">1</th>
+									<td>
+										<img th:src="${path + '/upload/banner/' + item.name}" data-action="zoom" style="height:40px;" />
+									</td>
+									<td>
+										<a href="javascript:void(0);" th:onclick="'del(\'' + ${item.name} + '\')'">
+											<span class="label label-success"
+												onmouseover="$(this).addClass('label-danger');"
+												onmouseout="$(this).removeClass('label-danger');">删除</span>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$("input[type='file']").change(function() {
+		var rgx = "(.jpg|.gif|.png|.webp)$";
+		var re = new RegExp(rgx);
+		if(!re.test($(this).val())){
+			alert("图片格式不正确，只能上传.jpg|.gif|.png|.webp格式图片");
+			$(this).val("");
+			return;
+		}
+		$("form").submit();
+	});
+	
+	var del = function(n) {
+		if(confirm("确定删除吗"))
+			window.location.href = "delete.html?fileName=" + n;
+	}
+</script>
+</html>

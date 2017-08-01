@@ -1,0 +1,48 @@
+<div th:fragment="menu" class="sidebar" role="navigation">
+	<div class="navbar-collapse">
+		<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+			<ul class="nav" id="side-menu">
+				<li>
+					<a href="javascript:void(0);"><i class="fa fa-cogs nav_icon"></i>系统配置<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level collapse">
+						<li>
+							<a href="javascript:void(0);">分红方式</a>
+						</li>
+					</ul>
+					<!-- /nav-second-level -->
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-book nav_icon"></i>内容管理 <span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level collapse">
+						<li>
+							<a th:href="${path + '/banner/list.html'}">轮播图管理</a>
+						</li>
+						<li>
+							<a th:href="${path + '/ticket/list.html'}">门票管理</a>
+						</li>
+						<li>
+							<a th:href="${path + '/product/list.html'}">产品管理</a>
+						</li>
+					</ul>
+					<!-- /nav-second-level -->
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-bar-chart nav_icon"></i>数据统计<span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level collapse">
+						<li>
+							<a href="login.html">Login</a>
+						</li>
+						<li>
+							<a href="signup.html">SignUp</a>
+						</li>
+						<li>
+							<a href="blank-page.html">Blank Page</a>
+						</li>
+					</ul>
+					<!-- //nav-second-level -->
+				</li>
+			</ul>
+			<!-- //sidebar-collapse -->
+		</nav>
+	</div>
+</div>
