@@ -6,6 +6,7 @@ import org.junit.*;
 import org.springframework.beans.factory.annotation.*;
 
 import com.soft.util.*;
+import com.soft.web.service.LoginService;
 
 public class LoginServiceTest extends BaseTest {
 

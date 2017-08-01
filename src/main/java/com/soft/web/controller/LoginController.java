@@ -1,4 +1,4 @@
-package com.soft.web.controller.login;
+package com.soft.web.controller;
 
 import java.util.*;
 
@@ -10,7 +10,7 @@ import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
 import com.soft.util.Text;
-import com.soft.web.service.login.*;
+import com.soft.web.service.*;
 
 /**
  * 登录Controller

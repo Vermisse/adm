@@ -71,6 +71,6 @@
 	</tx:advice>
 	<aop:config>
 		<!-- Service层事务拦截，可以配置多个 -->
-		<aop:advisor pointcut="execution(* com.soft.web.service.login.*Service.*(..))" advice-ref="txAdvice" />
+		<aop:advisor pointcut="execution(* com.soft.web.service.*Service.*(..))" advice-ref="txAdvice" />
 	</aop:config>
 </beans>

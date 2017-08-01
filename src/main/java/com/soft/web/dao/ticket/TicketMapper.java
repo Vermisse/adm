@@ -1,4 +1,4 @@
-package com.soft.web.dao.user;
+package com.soft.web.dao.ticket;
 
 import java.util.*;
 

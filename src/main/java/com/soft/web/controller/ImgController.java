@@ -1,4 +1,4 @@
-package com.soft.web.controller.login;
+package com.soft.web.controller;
 
 import java.io.*;
 

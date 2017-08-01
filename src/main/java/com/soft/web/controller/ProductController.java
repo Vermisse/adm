@@ -1,4 +1,4 @@
-package com.soft.web.controller.login;
+package com.soft.web.controller;
 
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;

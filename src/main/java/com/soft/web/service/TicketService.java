@@ -1,4 +1,4 @@
-package com.soft.web.service.login;
+package com.soft.web.service;
 
 import java.util.*;
 
@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
+import com.soft.web.dao.ticket.TicketMapper;
 import com.soft.web.dao.user.*;
 
 @Service

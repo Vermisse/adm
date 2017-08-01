@@ -1,4 +1,4 @@
-package com.soft.web.service.login;
+package com.soft.web.service;
 
 import java.util.*;
 
