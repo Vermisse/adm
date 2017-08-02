@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <title>后台</title>
+    <!--[if lt IE 8]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close"><i class="fa fa-times-circle"></i>
+            </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <span><img alt="image" class="img-circle" src="img/profile_small.jpg" /></span>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="clear">
+                               <span class="block m-t-xs"><strong class="font-bold">123</strong></span>
+                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a href="login.html">安全退出</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">后台
+                        </div>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="index_v1.html"><i class="fa fa-home"></i> <span class="nav-label">主页</span></a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="home.html"><i class=""></i> <span class="nav-label">轮播图录入</span></a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="ticket_add.html"><i class=""></i> <span class="nav-label">门票录入</span></a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="ticket.html"><i class=""></i> <span class="nav-label">门票列表</span></a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="tourism_add.html"><i class=""></i> <span class="nav-label">旅游产品录入</span></a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="tourism.html"><i class=""></i> <span class="nav-label">旅游产品列表</span></a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="register_list.html"><i class=""></i> <span class="nav-label">注册的用户列表</span></a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="visa_list.html"><i class=""></i> <span class="nav-label">申请签证列表</span></a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="hotel_list.html"><i class=""></i> <span class="nav-label">申请酒店列表</span></a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="aircraft_list.html"><i class=""></i> <span class="nav-label">申请机票列表</span></a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="train_list.html"><i class=""></i> <span class="nav-label">申请火车票列表</span></a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="automobile_list.html"><i class=""></i> <span class="nav-label">申请直通车列表</span></a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem" href="bonus.html"><i class=""></i> <span class="nav-label">邀请人分红方式(1.固定金额  2.比例分红【这个待定】</span></a>
+                    </li>
+
+                    <li>
+                        <a class="J_menuItem" href="system.html"><i class=""></i> <span class="nav-label">系统设置</span></a>
+                    </li>
+                    <li>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                        <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                            <div class="form-group">
+                             后台
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+            <div class="row content-tabs">
+                <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
+                </button>
+                <nav class="page-tabs J_menuTabs">
+                    <div class="page-tabs-content">
+                        <a href="javascript:;" class="active J_menuTab" data-id="index_v1.html">首页</a>
+                    </div>
+                </nav>
+                <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
+                </button>
+                <div class="btn-group roll-nav roll-right">
+                    <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
+
+                    </button>
+                    <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                        <li class="J_tabShowActive"><a>定位当前选项卡</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                        </li>
+                        <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+            </div>
+            <div class="row J_mainContent" id="content-main">
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="http://www.baidu.com" frameborder="0" data-id="index_v1.html" seamless></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+    </script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="js/plugins/layer/layer.min.js"></script>
+    <script src="js/hplus.min.js"></script>
+    <script type="text/javascript" src="js/contabs.min.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+</body>
+
+</html>
