@@ -1,104 +1,110 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:substituteby='base/head :: head (${"门票新增"})'></head>
-<body class="cbp-spmenu-push">
-	<div class="main-content">
-		<!--left-fixed -navigation-->
-		<div th:substituteby='base/menu :: menu'></div>
-		<!--left-fixed -navigation-->
-		<!-- header-starts -->
-		<div th:substituteby='base/nav :: nav'></div>
-		<!-- //header-ends -->
-		<!-- main content start-->
-		<div id="page-wrapper">
-			<form action="save.html" method="post">
-				<div class="main-page signup-page">
-					<h3 class="title1">门票新增</h3>
-					<div class="sign-up-row widget-shadow">
-						<div class="sign-u">
-							<div class="sign-up1">
-								<h4>门票名称：</h4>
-							</div>
-							<div class="sign-up2">
-								<input type="text" name="ticket_name" placeholder="门票名称" maxlength="50" required />
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						<div class="sign-u">
-							<div class="sign-up1">
-								<h4>门票价格：</h4>
-							</div>
-							<div class="sign-up2">
-								<input type="number" name="ticket_price" placeholder="门票价格" required />
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						<div class="sign-u">
-							<div class="sign-up1">
-								<h4>上传图片：</h4>
-							</div>
-							<div class="sign-up2">
-								<h4>
-									<a href="javascript:void(0);" onclick="chose()">
-										<span class="label label-primary"
-											onmouseover="$(this).addClass('label-info');"
-											onmouseout="$(this).removeClass('label-info');">点击上传</span>
-									</a>
-								</h4>
-								<input type="file" name="file" style="display:none;" />
-								<input type="hidden" name="filepath" />
-								<img src="" data-action="zoom" style="height:40px; display:none;" />
-							</div>
-							<div class="clearfix"></div>
-						</div>
-						<div class="sub_home">
-							<input type="submit" value="提交" />
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
-	</div>
-</body>
-<script type="text/javascript">
-	var chose = function() {
-		$("form .sign-u input[type='file']").val("").click();
-	}
-
-	$("input[type='file']").change(function() {
-		var rgx = "(.jpg|.gif|.png|.webp)$";
-		var re = new RegExp(rgx);
-		if (!re.test($(this).val())) {
-			alert("图片格式不正确，只能上传.jpg|.gif|.png|.webp格式图片");
-			$(this).val("");
-			return;
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>门票新增</title>
+	<link href="../commons/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../commons/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../commons/css/plugins/iCheck/custom.css" rel="stylesheet">
+	<link href="../commons/css/animate.min.css" rel="stylesheet">
+	<link href="../commons/css/style.min.css" rel="stylesheet">
+	<script src="../commons/js/jquery.min.js"></script>
+	<script src="../commons/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		var chose = function() {
+			$("form .form-group input[type='file']").val("").click();
 		}
 
-		$.ajax({
-			type : "POST",
-			url : "../upload.html",
-			contentType : false,
-			processData : false,
-			data : new FormData($("form")[0]),
-			cache : false,
-			success : function(data) {
-				$("form .sign-u img").attr("src", "../upload/file/" + data);
-				$("form .sign-u img").show();
-				$("form .sign-u input[name='filepath']").val(data);
-			},
-			error : function(XMLHttpRequest, textStatus, errorThrown) {
-				alert("上传失败，请检查网络后重试");
-			}
+		$(function(){
+			$("input[type='file']").change(function() {
+				var rgx = "(.jpg|.gif|.png|.webp)$";
+				var re = new RegExp(rgx);
+				if (!re.test($(this).val())) {
+					alert("图片格式不正确，只能上传.jpg|.gif|.png|.webp格式图片");
+					$(this).val("");
+					return;
+				}
+		
+				$.ajax({
+					type : "POST",
+					url : "../upload.html",
+					contentType : false,
+					processData : false,
+					data : new FormData($("form")[0]),
+					cache : false,
+					success : function(data) {
+						$("form .form-group img").attr("src", "../upload/file/" + data);
+						$("form .form-group img").show();
+						$("form .form-group input[name='filepath']").val(data);
+					},
+					error : function(XMLHttpRequest, textStatus, errorThrown) {
+						alert("上传失败，请检查网络后重试");
+					}
+				});
+			});
+			
+			$("button[type='submit']").click(function() {
+				if($("form .form-group input[name='filepath']").val() == ""){
+					alert("请上传图片");
+					return false;
+				}
+				return true;
+			});
 		});
-	});
-	
-	$("input[type='submit']").click(function() {
-		if($("form .sign-u input[name='filepath']").val() == ""){
-			alert("请上传图片");
-			return false;
-		}
-		return true;
-	});
-</script>
+	</script>
+</head>
+<body class="gray-bg">
+
+    <div class="col-sm-12 zero">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>门票新增</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form action="save.html" method="post" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">门票名称</label>
+
+                                <div class="col-sm-3">
+									<input type="text" class="form-control" name="ticket_name" placeholder="门票名称" maxlength="50" required />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">门票价格</label>
+                                <div class="col-sm-3">
+									<input type="number" class="form-control" name="ticket_price" placeholder="门票价格" required />
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">添加图片</label>
+								<div class="col-sm-10">
+									<ul class="tian_jia zero">
+										<li><img src="" data-action="zoom" style="height:40px; display:none;" /></li>
+										<li>
+											<button class="btn btn-primary chaxun demo3" type="button" onclick="chose()">
+												点击上传
+											</button>
+										</li>
+									</ul>
+									<input type="file" name="file" style="display:none;" />
+									<input type="hidden" name="filepath" />
+								</div>
+							</div>
+                             <div class="hr-line-dashed"></div> 
+
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary" type="submit">保存内容</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+</body>
+
 </html>
