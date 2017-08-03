@@ -4,4 +4,12 @@
 
 <mapper namespace="com.soft.web.dao.product.ProductMapper">
 	
+	<select id="queryProduct" resultType="java.util.Map">
+		select * from product t
+		where 1=1
+		<if test="product_name != null and product_name != ''">
+			and t.product_name like concat('%',#{product_name},'%')
+		</if>
+		order by t.create_date desc
+	</select>
 </mapper>

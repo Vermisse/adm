@@ -11,4 +11,9 @@ public class ProductController {
 	public String list() {
 		return "manage/product";
 	}
+
+	@RequestMapping("add")
+	public String add() {
+		return "manage/productAdd";
+	}
 }
