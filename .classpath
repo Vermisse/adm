@@ -33,5 +33,7 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/commons-io-2.4.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/json.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ueditor-1.1.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
