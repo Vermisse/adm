@@ -75,7 +75,7 @@
 										<th class="sorting">图片</th>
 										<th class="sorting">操作</th>
 									</tr>
-									<tr th:each="item,stat : ${banners}" class="gradeA odd mail-body text-right tooltip-demo">
+									<tr th:each="item,stat : ${banners}" th:if="${item.name != 'user.dir'}" class="gradeA odd mail-body text-right tooltip-demo">
 										<th th:text="${stat.count}">1</th>
 										<td>
 											<img th:src="${path + '/upload/banner/' + item.name}" data-action="zoom" style="height:40px;" />

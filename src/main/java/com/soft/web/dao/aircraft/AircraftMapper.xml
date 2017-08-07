@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.soft.web.dao.aircraft.AircraftMapper">
+	
+	<!-- 根据状态查询机票订单列表 -->
+	<select id="queryAircraftList" resultType="java.util.Map">
+		select
+			o.id, o.userName,o.userTel,o.peopleNum,o.departurePlace,o.destination,o.checkStartTime,
+			o.checkEndTime,o.state,d.checkName,d.checkTel
+		from tb_Aircraft_order o left join tb_aircraft_order_detail d on o.id=d.t_id
+		where 1=1 and d.state=0 
+		<if test="state != null and state != '-1'">
+			and o.state=#{state} 
+		</if>
+		order by o.createTime desc
+	</select>
+	
+	<!-- 根据id修改机票当前状态（0初始值；1未沟通；2已沟通；3未成单；已成单；）  -->
+	<update id="updateAircraftStateById">
+		update tb_aircraft_order o set o.state=#{state}, o.updateTime=#{updateTime} where o.id=#{id}
+	</update>
+	
+	<!-- 添加机票订单  -->
+	<insert id="addAircraft">
+		insert into tb_aircraft_order(userName, userTel, departurePlace, destination, checkStartTime, checkEndTime, peopleNum, createTime, updateTime, state)
+		values(#{userName}, #{userTel}, #{departurePlace}, #{destination}, #{checkStartTime}, #{checkEndTime}, #{peopleNum}, #{createTime}, #{updateTime}, 0)
+	</insert>
+</mapper>

@@ -9,7 +9,7 @@ import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 
-import com.soft.util.Text;
+import com.soft.util.*;
 import com.soft.web.service.*;
 
 /**
