@@ -3,7 +3,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.soft.web.dao.user.UserMapper">
-	
+
 	<select id="queryUser" resultType="java.util.Map">
 		select
 			t.user_id,
@@ -17,7 +17,22 @@
 		where
 			t.user_name = #{user_name}
 	</select>
-	
+	<select id="queryRegister" resultType="java.util.Map">
+		select
+			t.user_id,
+			t.user_name,
+			t.password,
+			t.real_name,
+			t.mobile,
+			t.status,
+			t.create_date
+		from
+			sys_user t
+		where
+			t.status = 2
+		order by
+			t.create_date desc
+	</select>
 	<update id="password">
 		update sys_user t set password = #{password} where t.user_id = #{user_id}
 	</update>
