@@ -13,6 +13,7 @@
 
 
 -- 导出 db 的数据库结构
+DROP DATABASE IF EXISTS `db`;
 CREATE DATABASE IF NOT EXISTS `db` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `db`;
 
@@ -42,18 +43,16 @@ CREATE TABLE IF NOT EXISTS `sys_user` (
   `password` varchar(50) NOT NULL DEFAULT '0' COMMENT '密码',
   `real_name` varchar(50) NOT NULL DEFAULT '0' COMMENT '真实姓名',
   `mobile` varchar(50) NOT NULL DEFAULT '0' COMMENT '电话号码',
-  `group_id` int(11) NOT NULL DEFAULT 0 COMMENT '角色',
+  `invite_id` int(11) DEFAULT 0,
   `status` int(11) NOT NULL DEFAULT 0 COMMENT '状态：1-启用、0-停用',
   PRIMARY KEY (`user_id`),
-  UNIQUE KEY `user_name` (`user_name`),
-  KEY `FK__sys_group` (`group_id`),
-  CONSTRAINT `FK__sys_group` FOREIGN KEY (`group_id`) REFERENCES `sys_group` (`group_id`)
+  UNIQUE KEY `user_name` (`user_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- 正在导出表  db.sys_user 的数据：~1 rows (大约)
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` (`user_id`, `user_name`, `password`, `real_name`, `mobile`, `group_id`, `status`) VALUES
-	(1, 'admin', '7003d55bebfea70262236628298f4b57', '超级管理员', '15645155210', 1, 1);
+INSERT INTO `sys_user` (`user_id`, `user_name`, `password`, `real_name`, `mobile`, `invite_id`, `status`) VALUES
+	(1, 'admin', '7003d55bebfea70262236628298f4b57', '超级管理员', '15645155210', NULL, 1);
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 
 -- 导出  表 db.tickets 结构
@@ -65,9 +64,9 @@ CREATE TABLE IF NOT EXISTS `tickets` (
   `state` int(11) NOT NULL,
   `create_date` date NOT NULL,
   PRIMARY KEY (`ticket_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='门票';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='门票';
 
--- 正在导出表  db.tickets 的数据：~1 rows (大约)
+-- 正在导出表  db.tickets 的数据：~11 rows (大约)
 /*!40000 ALTER TABLE `tickets` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tickets` ENABLE KEYS */;
 
