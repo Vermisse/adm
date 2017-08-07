@@ -6,10 +6,10 @@
 	
 	<!-- 根据状态查询酒店订单列表 -->
 	<select id="queryHotelList" resultType="java.util.Map">
-	select
-		o.id, o.userName,o.userTel,o.peopleNum,o.address,o.checkStartTime,o.checkEndTime,o.state,d.checkName,d.checkTel
-		from tb_hotel_order o left join tb_hotel_order_detail d on o.id=d.o_id
-	where 1=1 and d.state=0 
+		select
+			o.id, o.userName,o.userTel,o.peopleNum,o.address,o.checkStartTime,o.checkEndTime,o.state,d.checkName,d.checkTel
+			from tb_hotel_order o left join tb_hotel_order_detail d on o.id=d.o_id
+		where 1=1 and d.state=0 
 		<if test="state != null and state != '-1'">
 			and o.state=#{state} 
 		</if>
