@@ -1,12 +1,12 @@
 package com.soft.web.service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
 
-import com.soft.web.dao.train.TrainMapper;
+import com.soft.util.*;
+import com.soft.web.dao.train.*;
 
 /**
  * 直通车服务类
@@ -25,10 +25,13 @@ public class TrainService {
 	 * @param state
 	 * @return
 	 */
-	public List<Map> queryTrainList(String state) {
-		return mapper.queryTrainList(state);
+	public List<Map> queryTrainList(String state, Page page) {
+		return mapper.queryTrainList(state, page);
 	}
 	
+	public int queryTrainListCount(String state) {
+		return mapper.queryTrainListCount(state);
+	}
 	
 	/**
 	 * 根据状态查询直通车订单列表

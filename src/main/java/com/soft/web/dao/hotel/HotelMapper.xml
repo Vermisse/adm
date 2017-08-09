@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN"   
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.soft.web.dao.hotel.HotelMapper">
 	
@@ -8,12 +8,21 @@
 	<select id="queryHotelList" resultType="java.util.Map">
 		select
 			o.id, o.userName,o.userTel,o.peopleNum,o.address,o.checkStartTime,o.checkEndTime,o.state,d.checkName,d.checkTel
-			from tb_hotel_order o left join tb_hotel_order_detail d on o.id=d.o_id
-		where 1=1 and d.state=0 
+		from tb_hotel_order o left join tb_hotel_order_detail d on o.id=d.o_id
+		where d.state=0 
 		<if test="state != null and state != '-1'">
 			and o.state=#{state} 
 		</if>
 		order by o.createTime desc
+		limit ${page.num},${page.size}
+	</select>
+	<select id="queryHotelListCount" resultType="Integer">
+		select count(*)
+		from tb_hotel_order o left join tb_hotel_order_detail d on o.id=d.o_id
+		where d.state=0 
+		<if test="state != null and state != '-1'">
+			and o.state=#{state} 
+		</if>
 	</select>
 	
 	<!-- 根据id修改酒店当前状态（0初始值；1未沟通；2已沟通；3未成单；已成单；）  -->

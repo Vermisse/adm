@@ -8,12 +8,21 @@
 	<select id="queryVisaList" resultType="java.util.Map">
 		select
 			v.id, v.userName,v.userTel,v.peopleNum,v.address,v.checkStartTime,v.checkEndTime,v.state,d.checkName,d.checkTel
-			from tb_visa_order v left join tb_visa_order_detail d on v.id=d.v_id
-		where 1=1 and d.state=0 
+		from tb_visa_order v left join tb_visa_order_detail d on v.id=d.v_id
+		where d.state=0 
 		<if test="state != null and state != '-1'">
 			and v.state=#{state} 
 		</if>
 		order by v.createTime desc
+		limit ${page.num},${page.size}
+	</select>
+	<select id="queryVisaListCount" resultType="Integer">
+		select count(*)
+		from tb_visa_order v left join tb_visa_order_detail d on v.id=d.v_id
+		where d.state=0 
+		<if test="state != null and state != '-1'">
+			and v.state=#{state} 
+		</if>
 	</select>
 	
 	<!-- 根据id修改签证当前状态（0初始值；1未沟通；2已沟通；3未成单；已成单；）  -->

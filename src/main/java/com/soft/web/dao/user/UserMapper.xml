@@ -30,8 +30,20 @@
 			sys_user t
 		where
 			t.status = 2
+		<if test="user_name != null and user_name != ''">
+			and t.user_name like concat('%',#{user_name},'%')
+		</if>
 		order by
 			t.create_date desc
+		limit ${page.num},${page.size}
+	</select>
+	<select id="queryRegisterCount" resultType="Integer">
+		select count(*)
+		from sys_user t
+		where t.status = 2
+		<if test="user_name != null and user_name != ''">
+			and t.user_name like concat('%',#{user_name},'%')
+		</if>
 	</select>
 	<update id="password">
 		update sys_user t set password = #{password} where t.user_id = #{user_id}

@@ -1,12 +1,12 @@
 package com.soft.web.service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
 
-import com.soft.web.dao.hotel.HotelMapper;
+import com.soft.util.*;
+import com.soft.web.dao.hotel.*;
 
 /**
  * 酒店服务类
@@ -25,10 +25,13 @@ public class HotelService {
 	 * @param state
 	 * @return
 	 */
-	public List<Map> queryHotelList(String state) {
-		return mapper.queryHotelList(state);
+	public List<Map> queryHotelList(String state, Page page) {
+		return mapper.queryHotelList(state, page);
 	}
 	
+	public int queryHotelListCount(String state) {
+		return mapper.queryHotelListCount(state);
+	}
 	
 	/**
 	 * 根据状态查询酒店订单列表

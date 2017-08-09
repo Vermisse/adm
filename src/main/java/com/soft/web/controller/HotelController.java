@@ -1,16 +1,14 @@
 package com.soft.web.controller;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
+import org.springframework.ui.*;
+import org.springframework.web.bind.annotation.*;
 
-import com.soft.util.DateUtil;
-import com.soft.util.Page;
-import com.soft.web.service.HotelService;
+import com.soft.util.*;
+import com.soft.web.service.*;
 
 /**
  * 酒店操作类
@@ -28,8 +26,12 @@ public class HotelController {
 	
 	@RequestMapping("list")
 	public String list(String state, Page page, Model model) {
-		List<Map> list = hotelService.queryHotelList(state);
+		List<Map> list = hotelService.queryHotelList(state, page);
+		int count = hotelService.queryHotelListCount(state);
+		page.setCount(count);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("page", page);
 		return "manage/hotel/hotelList";
 	}
 

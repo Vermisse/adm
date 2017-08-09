@@ -1,12 +1,12 @@
 package com.soft.web.service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
 
-import com.soft.web.dao.visa.VisaMapper;
+import com.soft.util.*;
+import com.soft.web.dao.visa.*;
 
 /**
  * 签证服务类
@@ -25,10 +25,13 @@ public class VisaService {
 	 * @param state
 	 * @return
 	 */
-	public List<Map> queryVisaList(String state) {
-		return mapper.queryVisaList(state);
+	public List<Map> queryVisaList(String state, Page page) {
+		return mapper.queryVisaList(state, page);
 	}
 	
+	public int queryVisaListCount(String state) {
+		return mapper.queryVisaListCount(state);
+	}
 	
 	/**
 	 * 根据状态查询签证订单列表

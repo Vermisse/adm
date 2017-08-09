@@ -1,9 +1,10 @@
 package com.soft.web.dao.train;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
+
+import com.soft.util.*;
 
 /**
  * 直通车dao
@@ -15,10 +16,13 @@ import org.apache.ibatis.annotations.Param;
 public interface TrainMapper {
 
 	// 根据状态查询直通车订单列表
-	List<Map> queryTrainList(@Param("state") String state);
+	List<Map> queryTrainList(@Param("state") String state, @Param("page") Page page);
+	
+	int queryTrainListCount(@Param("state") String state);
 
 	// 根据id修改直通车当前状态（0初始值；1未沟通；2已沟通；3未成单；已成单；）
-	int updateTrainStateById(@Param("state") String state, @Param("id") String id,
+	int updateTrainStateById(@Param("state") String state,
+			@Param("id") String id,
 			@Param("updateTime") String updateTime);
 
 	// 添加直通车订单

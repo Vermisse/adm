@@ -28,8 +28,12 @@ public class VisaController {
 	
 	@RequestMapping("list")
 	public String list(String state, Page page, Model model) {
-		List<Map> list = visaService.queryVisaList(state);
+		List<Map> list = visaService.queryVisaList(state, page);
+		int count = visaService.queryVisaListCount(state);
+		page.setCount(count);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("page", page);
 		return "manage/visa/visaList";
 	}
 

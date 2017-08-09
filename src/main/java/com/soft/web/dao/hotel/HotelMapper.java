@@ -1,9 +1,10 @@
 package com.soft.web.dao.hotel;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
+
+import com.soft.util.*;
 
 /**
  * 酒店dao
@@ -15,10 +16,13 @@ import org.apache.ibatis.annotations.Param;
 public interface HotelMapper {
 
 	// 根据状态查询酒店订单列表
-	List<Map> queryHotelList(@Param("state") String state);
-
+	List<Map> queryHotelList(@Param("state") String state, @Param("page") Page page);
+	
+	int queryHotelListCount(@Param("state") String state);
+	
 	// 根据id修改酒店当前状态（0初始值；1未沟通；2已沟通；3未成单；已成单；）
-	int updateHotelStateById(@Param("state") String state, @Param("id") String id,
+	int updateHotelStateById(@Param("state") String state,
+			@Param("id") String id,
 			@Param("updateTime") String updateTime);
 
 	// 添加酒店订单

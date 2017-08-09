@@ -28,8 +28,12 @@ public class TrainController {
 	
 	@RequestMapping("list")
 	public String list(String state, Page page, Model model) {
-		List<Map> list = trainService.queryTrainList(state);
+		List<Map> list = trainService.queryTrainList(state, page);
+		int count = trainService.queryTrainListCount(state);
+		page.setCount(count);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("page", page);
 		return "manage/train/trainList";
 	}
 

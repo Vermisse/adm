@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN"   
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.soft.web.dao.train.TrainMapper">
 	
@@ -10,11 +10,20 @@
 			t.id, t.userName,t.userTel,t.peopleNum,t.departurePlace,t.destination,
 			t.checkStartTime,t.checkEndTime,t.state,d.checkName,d.checkTel,d.cardId 
 		from tb_train_order t left join tb_train_order_detail d on t.id=d.t_id
-		where 1=1 and d.state=0 
+		where d.state=0 
 		<if test="state != null and state != '-1'">
 			and t.state=#{state} 
 		</if>
 		order by t.createTime desc
+		limit ${page.num},${page.size}
+	</select>
+	<select id="queryTrainListCount" resultType="Integer">
+		select count(*)
+		from tb_train_order t left join tb_train_order_detail d on t.id=d.t_id
+		where d.state=0 
+		<if test="state != null and state != '-1'">
+			and t.state=#{state} 
+		</if>
 	</select>
 	
 	<!-- 根据id修改直通车当前状态（0初始值；1未沟通；2已沟通；3未成单；已成单；）  -->
