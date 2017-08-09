@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>私人订制</title>
+    <link rel="shortcut icon" href="favicon.ico"> 
+    <link href="../commons/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../commons/css/font-awesome.min.css" rel="stylesheet">
+    <!--one -->
+    <link href="../commons/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="../commons/css/animate.min.css" rel="stylesheet">
+    <link href="../commons/css/style.min.css" rel="stylesheet"><base target="_blank">
+    <!-- two -->
+    <link href="../commons/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="../commons/css/animate.min.css" rel="stylesheet">
+    <link href="../commons/css/common.css" rel="stylesheet">
+       <link href="../commons/css/layer.css" rel="stylesheet">
+  </head>
+
+<body class="gray-bg">
+	<form action="list.html" method="post" target="_self">
+    <div class="wrapper wrapper-content animated fadeInRight zero">
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>私人订制列表<small></small></h5>
+                    </div>
+                    <div class="ibox-content zero">
+                        <div class="row">
+            <div class="col-sm-12">
+                	<div class="ibox-content">
+					<div id="DataTables_Table_0_wrapper" class="form-inline"
+						role="grid">
+						<div class="row">
+							<div class="col-sm-12 zero ">
+								<div id="div_jqGridSelect" class="dataTables_length mohusou">
+                                    <label>
+                                    	状态查询：
+	                                    <select name="state">
+	                               			<option value="-1">请选择</option>
+	                               			<option value="0">初始值</option>
+	                               			<option value="1">未沟通</option>
+	                               			<option value="2">已沟通</option>
+	                               			<option value="3">未成单</option>
+	                               			<option value="4">已成单</option>
+	                               		</select>
+                                    </label>
+									<button class="btn btn-primary chaxun" type="submit" data-toggle="modal">查询</button>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+        </div>
+
+    </div>
+                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+                            <table class="table table-striped table-bordered table-hover dataTables-example dataTable zero">
+
+                            <tbody>
+                  
+                               <tr role="row">
+                                   <th class="sorting" >序号</th>
+                                   <th class="sorting">姓名</th>
+                                   <th class="sorting">联系方式</th>
+                                   <th class="sorting">出行方式</th>
+                                   <th class="sorting">出行人数</th>
+                                   <th class="sorting">状态</th>
+                                   <th class="sorting">操作</th>
+                               </tr> 
+                                
+                            <tr th:each="item,stat : ${list}" class="gradeA odd mail-body text-right tooltip-demo">
+                                <td th:text="${stat.count}" class="" data-toggle="tooltip" data-placement="bottom">1</td>
+                                <td th:text="${item.userName}" class="" data-toggle="tooltip" data-placement="bottom" title="一段很长的文字">姓名</td>
+                               <td th:text="${item.userTel}" class="" data-toggle="tooltip" data-placement="bottom" title="一段很长的文字">联系方式</td>
+                               <td th:text="${item.tripMode}" class="" data-toggle="tooltip" data-placement="bottom" title="一段很长的文字">出行方式</td>
+                               <td th:text="${item.peopleNum}" class="" data-toggle="tooltip" data-placement="bottom">出行人数</td>
+                               <td class="">
+	                               		<select name="_sel">
+	                               			<option th:selected="${item.state == 0}" value="0">初始值</option>
+	                               			<option th:selected="${item.state == 1}" value="1">未沟通</option>
+	                               			<option th:selected="${item.state == 2}" value="2">已沟通</option>
+	                               			<option th:selected="${item.state == 3}" value="3">未成单</option>
+	                               			<option th:selected="${item.state == 4}" value="4">已成单</option>
+	                               		</select>
+	                              </td>
+	                              <td class=""><a th:onclick="'_update('+${item.id}+', this)'" class="">修改</a></td>
+	                                
+                                </tr>
+                                </tbody>
+                        </table>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+    <!--分页-->
+    <div class="row fenye zero">
+                            <div class="col-sm-6">
+                                <div class="dataTables_info">共 57 项</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                    <ul class="pagination">
+                                        <li class="paginate_button previous disabled" style="margin-right: 15px;" >
+                                        <select  class="form-control input-sm fenye2">
+                                    <option>10</option>
+                                    <option>50</option>
+                                    <option >100</option>
+                                    <option>150</option>
+                                </select>
+                                </label>
+                                        </li>
+                                        <li class="paginate_button previous disabled" >
+                                        <a href="#">首页</a>
+                                        </li>
+                                        <li class="paginate_button">
+                                            <a href="#"><<</i></a>
+                                        </li><li class="paginate_button ">
+                                        <a href="#"><</a>
+                                    </li><li class="paginate_button ">
+                                       <input class="fenyek cencetc" value="1">
+                                    </li>
+                                        <li class="paginate_button ">
+                                            <a href="#">/10</a>
+                                        </li>
+                                        <li class="paginate_button ">
+                                            <a href="#">></a>
+                                        </li>
+                                        <li class="paginate_button ">
+                                            <a href="#">>></a>
+                                        </li>
+                                        <li class="paginate_button next">
+                                            <a href="#">尾页</a>
+                                        </li>
+                                         <li class="paginate_button next">
+                                             <a data-toggle="modal" data-target="#myModal3" ><i class="fa fa-refresh" ></i> </a>
+                                        </li>
+                                    </ul>
+                                </div></div></div>
+    <script src="../commons/js/plugins/dataTables/jquery.dataTables.js"></script>
+     <script src="../commons/js/jquery.min.js"></script>
+    <script src="../commons/js/bootstrap.min.js"></script>
+    <script src="../commons/js/content.min.js"></script>
+    <script src="../commons/js/plugins/sweetalert/sweetalert.min.js"></script>
+        <script src="../commons/js/layer.min.js"></script>
+     <script>
+        $('#testjz2').on('click', function(){
+            layer.open({
+  type: 2,
+  title: '信息详情',
+  shadeClose: true,
+  shade: 0.8,
+  area: ['600px', '50%'],
+  content: 'visa_new.html' //iframe的url
+}); 
+            });
+
+    </script>
+    <script>
+    	// 修改
+    	function _update(_id,row) {
+    		$("form").attr("action","update.html?id=" + _id + "&states=" + $(row).parent().parent().find("select").val());
+    		$("form").submit();
+    	}
+    </script>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.soft.web.dao.my.MyMapper">
+	
+	<!-- 根据状态查询私人订制订单列表 -->
+	<select id="queryMyList" resultType="java.util.Map">
+		select * from tb_my_order t 
+		where 1=1 
+		<if test="state != null and state != '-1'">
+			and t.state=#{state} 
+		</if>
+		order by t.createTime desc
+	</select>
+	
+	<!-- 根据id修改私人订制当前状态（0初始值；1未沟通；2已沟通；3未成单；已成单；）  -->
+	<update id="updateMyStateById">
+		update tb_my_order t set t.state=#{state}, t.updateTime=#{updateTime} where t.id=#{id}
+	</update>
+	
+	<!-- 添加私人订制订单  -->
+	<insert id="addMy">
+		insert into tb_my_order(userName, userTel,  peopleNum, tripMode, createTime, updateTime, state)
+		values(#{userName}, #{userTel}, #{peopleNum}, #{tripMode}, #{createTime}, #{updateTime}, 0)
+	</insert>
+</mapper>
