@@ -30,4 +30,7 @@ public interface VisaMapper {
 			@Param("peopleNum") String peopleNum, @Param("createTime") String createTime,
 			@Param("updateTime") String updateTime, @Param("address") String address,
 			@Param("checkStartTime") String checkStartTime, @Param("checkEndTime") String checkEndTime);
+	
+	// 查询签证详情
+	List<Map> queryVisaDetailList(@Param("v_id") String id);
 }

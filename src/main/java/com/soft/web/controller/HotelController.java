@@ -57,4 +57,18 @@ public class HotelController {
 		String updateTime = DateUtil.getNow(format);
 		hotelService.addHotel(userName, userTel, peopleNum, createTime, updateTime, address, checkStartTime, checkEndTime);
 	}
+	
+	/**
+	 * 查询订单详情
+	 * @param id
+	 * @param page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("detailList")
+	public String detailList(String id, Page page, Model model) {
+		List<Map> list = hotelService.queryHotelDetailList(id);
+		model.addAttribute("list", list);
+		return "manage/hotel/detailList";
+	}
 }

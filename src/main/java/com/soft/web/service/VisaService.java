@@ -54,4 +54,13 @@ public class VisaService {
 	public int addVisa(String userName, String userTel, String peopleNum, String createTime, String updateTime, String address, String checkStartTime, String checkEndTime) {
 		return mapper.addVisa(userName, userTel, peopleNum, createTime, updateTime, address, checkStartTime, checkEndTime);
 	}
+	
+	/**
+	 * 根据状态查询签证订单列表
+	 * @param state
+	 * @return
+	 */
+	public List<Map> queryVisaDetailList(String id) {
+		return mapper.queryVisaDetailList(id);
+	}
 }

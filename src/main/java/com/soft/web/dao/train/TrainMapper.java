@@ -30,4 +30,7 @@ public interface TrainMapper {
 			@Param("peopleNum") String peopleNum, @Param("createTime") String createTime,
 			@Param("updateTime") String updateTime, @Param("address") String address,
 			@Param("checkStartTime") String checkStartTime, @Param("checkEndTime") String checkEndTime);
+	
+	// 根据ID查询直通车订单详情列表
+	List<Map> queryTrainDetailList(@Param("t_id") String id);
 }

@@ -59,4 +59,18 @@ public class VisaController {
 		String updateTime = DateUtil.getNow(format);
 		visaService.addVisa(userName, userTel, peopleNum, createTime, updateTime, address, checkStartTime, checkEndTime);
 	}
+	
+	/**
+	 * 查询订单详情
+	 * @param id
+	 * @param page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("detailList")
+	public String detailList(String id, Page page, Model model) {
+		List<Map> list = visaService.queryVisaDetailList(id);
+		model.addAttribute("list", list);
+		return "manage/visa/visaList";
+	}
 }

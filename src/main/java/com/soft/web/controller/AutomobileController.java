@@ -55,4 +55,18 @@ public class AutomobileController {
 		String updateTime = DateUtil.getNow(format);
 		automobileService.addAutomobile(userName, userTel, peopleNum, createTime, updateTime, address, checkStartTime, checkEndTime);
 	}
+	
+	/**
+	 * 查询订单详情
+	 * @param id
+	 * @param page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("detailList")
+	public String detailList(String id, Page page, Model model) {
+		List<Map> list = automobileService.queryAutomobileDetailList(id);
+		model.addAttribute("list", list);
+		return "manage/automobile/automobileList";
+	}
 }

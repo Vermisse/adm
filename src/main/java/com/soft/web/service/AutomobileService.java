@@ -51,4 +51,14 @@ public class AutomobileService {
 	public int addAutomobile(String userName, String userTel, String peopleNum, String createTime, String updateTime, String address, String checkStartTime, String checkEndTime) {
 		return mapper.addAutomobile(userName, userTel, peopleNum, createTime, updateTime, address, checkStartTime, checkEndTime);
 	}
+	
+
+	/**
+	 * 根据id查询机票详情列表
+	 * @param id
+	 * @return
+	 */
+	public List<Map> queryAutomobileDetailList(String id) {
+		return mapper.queryAutomobileDetailList(id);
+	}
 }

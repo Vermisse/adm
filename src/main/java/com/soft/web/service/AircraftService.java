@@ -51,4 +51,13 @@ public class AircraftService {
 	public int addAircraft(String userName, String userTel, String peopleNum, String createTime, String updateTime, String address, String checkStartTime, String checkEndTime) {
 		return mapper.addAircraft(userName, userTel, peopleNum, createTime, updateTime, address, checkStartTime, checkEndTime);
 	}
+
+	/**
+	 * 根据id查询机票订单列表
+	 * @param id
+	 * @return
+	 */
+	public List<Map> queryAircraftDetailList(String id) {
+		return mapper.queryAircraftDetailList(id);
+	}
 }

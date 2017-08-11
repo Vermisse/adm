@@ -26,4 +26,7 @@ public interface AircraftMapper {
 			@Param("peopleNum") String peopleNum, @Param("createTime") String createTime,
 			@Param("updateTime") String updateTime, @Param("address") String address,
 			@Param("checkStartTime") String checkStartTime, @Param("checkEndTime") String checkEndTime);
+
+	// 根据ID查询飞机票订单详情列表
+	List<Map> queryAircraftDetailList(@Param("state") String state);
 }

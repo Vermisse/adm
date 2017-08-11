@@ -54,4 +54,13 @@ public class TrainService {
 	public int addTrain(String userName, String userTel, String peopleNum, String createTime, String updateTime, String address, String checkStartTime, String checkEndTime) {
 		return mapper.addTrain(userName, userTel, peopleNum, createTime, updateTime, address, checkStartTime, checkEndTime);
 	}
+	
+	/**
+	 * 根据id状态查询直通车订单详情列表
+	 * @param state
+	 * @return
+	 */
+	public List<Map> queryTrainDetailList(String id) {
+		return mapper.queryTrainDetailList(id);
+	}
 }

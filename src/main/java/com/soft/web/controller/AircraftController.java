@@ -55,4 +55,18 @@ public class AircraftController {
 		String updateTime = DateUtil.getNow(format);
 		aircraftService.addAircraft(userName, userTel, peopleNum, createTime, updateTime, address, checkStartTime, checkEndTime);
 	}
+	
+	/**
+	 * 查询订单详情
+	 * @param id
+	 * @param page
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("detailList")
+	public String detailList(String id, Page page, Model model) {
+		List<Map> list = aircraftService.queryAircraftDetailList(id);
+		model.addAttribute("list", list);
+		return "manage/aircraft/aircraftList";
+	}
 }

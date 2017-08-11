@@ -54,4 +54,13 @@ public class HotelService {
 	public int addHotel(String userName, String userTel, String peopleNum, String createTime, String updateTime, String address, String checkStartTime, String checkEndTime) {
 		return mapper.addHotel(userName, userTel, peopleNum, createTime, updateTime, address, checkStartTime, checkEndTime);
 	}
+	
+	/**
+	 * 根据ID查询酒店订单列表
+	 * @param id
+	 * @return
+	 */
+	public List<Map> queryHotelDetailList(String id) {
+		return mapper.queryHotelDetailList(id);
+	}
 }

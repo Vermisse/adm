@@ -26,4 +26,7 @@ public interface AutomobileMapper {
 			@Param("peopleNum") String peopleNum, @Param("createTime") String createTime,
 			@Param("updateTime") String updateTime, @Param("address") String address,
 			@Param("checkStartTime") String checkStartTime, @Param("checkEndTime") String checkEndTime);
+	
+	// 根据状态查询火车票订单列表
+	List<Map> queryAutomobileDetailList(@Param("t_id") String id);
 }
