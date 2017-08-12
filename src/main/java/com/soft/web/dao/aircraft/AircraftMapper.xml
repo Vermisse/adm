@@ -39,8 +39,7 @@
 	
 	<!-- 根据ID查询火车票订单详情列表 -->
 	<select id="queryAircraftDetailList" resultType="java.util.Map">
-		select
-			* 
+		select * 
 		from tb_aircraft_order_detail 
 		where 1=1 and state=0 
 		<if test="t_id != null and t_id != '-1'">

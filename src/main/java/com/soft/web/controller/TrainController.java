@@ -72,6 +72,6 @@ public class TrainController {
 	public String detailList(String id, Page page, Model model) {
 		List<Map> list = trainService.queryTrainDetailList(id);
 		model.addAttribute("list", list);
-		return "manage/train/trainList";
+		return "manage/train/detailList";
 	}
 }

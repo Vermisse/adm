@@ -71,6 +71,6 @@ public class AutomobileController {
 	public String detailList(String id, Page page, Model model) {
 		List<Map> list = service.queryAutomobileDetailList(id);
 		model.addAttribute("list", list);
-		return "manage/automobile/automobileList";
+		return "manage/automobile/detailList";
 	}
 }

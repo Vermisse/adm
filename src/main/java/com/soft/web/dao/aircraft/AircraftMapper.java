@@ -32,5 +32,5 @@ public interface AircraftMapper {
 			@Param("checkStartTime") String checkStartTime, @Param("checkEndTime") String checkEndTime);
 
 	// 根据ID查询飞机票订单详情列表
-	List<Map> queryAircraftDetailList(@Param("state") String state);
+	List<Map> queryAircraftDetailList(@Param("t_id") String t_id);
 }

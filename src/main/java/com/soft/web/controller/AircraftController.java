@@ -71,6 +71,6 @@ public class AircraftController {
 	public String detailList(String id, Page page, Model model) {
 		List<Map> list = aircraftService.queryAircraftDetailList(id);
 		model.addAttribute("list", list);
-		return "manage/aircraft/aircraftList";
+		return "manage/aircraft/detailList";
 	}
 }

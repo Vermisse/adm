@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>机票列表</title>
+	<title>火车票列表</title>
 	<link href="../commons/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../commons/css/font-awesome.min.css" rel="stylesheet">
 	<!--one -->
@@ -34,7 +34,7 @@
 				<div class="col-sm-12">
 					<div class="ibox float-e-margins">
 						<div class="ibox-title">
-							<h5>机票申请列表</h5>
+							<h5>火车票申请列表</h5>
 						</div>
 						<div class="ibox-content zero">
 							<div class="row">
@@ -75,7 +75,8 @@
 											<th class="sorting">联系人</th>
 											<th class="sorting">联系电话</th>
 											<th class="sorting">人数</th>
-											<th class="sorting">出行时间</th>
+											<th class="sorting">出行开始时间</th>
+											<th class="sorting">出行结束时间</th>
 											<th class="sorting">预定详情</th>
 											<th class="sorting">状态</th>
 											<th class="sorting">操作</th>
@@ -87,8 +88,9 @@
 											<td th:text="${item.userName}">联系人</td>
 											<td th:text="${item.userTel}">联系电话</td>
 											<td th:text="${item.peopleNum}">人数</td>
-											<td th:text="${item.checkStartTime}">出行时间</td>
-											<td th:text="${item.checkEndTime}"><a class="color_green">查看</a></td>
+											<td th:text="${item.checkStartTime}">出行开始时间</td>
+											<td th:text="${item.checkEndTime}">出行结束时间</td>
+											<td><a class="" th:href="'detailList.html?id=' + ${item.id}">查看</a></td>
 											<td class="">
 												<select name="_sel">
 													<option th:selected="${item.state == 0}" value="0">初始值</option>

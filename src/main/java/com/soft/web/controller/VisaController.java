@@ -71,6 +71,6 @@ public class VisaController {
 	public String detailList(String id, Page page, Model model) {
 		List<Map> list = visaService.queryVisaDetailList(id);
 		model.addAttribute("list", list);
-		return "manage/visa/visaList";
+		return "manage/visa/detailList";
 	}
 }

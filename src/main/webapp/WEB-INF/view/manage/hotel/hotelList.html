@@ -86,7 +86,7 @@
 											<td th:text="${item.peopleNum}">入住人数</td>
 											<td th:text="${item.checkStartTime}">入住开始时间</td>
 											<td th:text="${item.checkEndTime}">入住结束时间</td>
-											<td><a class="">查看</a></td>
+											<td><a class="" th:href="'detailList.html?id=' + ${item.id}">查看</a></td>
 											<td class="">
 												<select name="_sel">
 													<option th:selected="${item.state == 0}" value="0">初始值</option>
