@@ -87,7 +87,7 @@
 											<td th:text="${item.peopleNum}">签证人数</td>
 											<td th:text="${item.checkStartTime}">签证开始时间</td>
 											<td th:text="${item.checkEndTime}">签证开始时间</td>
-											<td><a class="">查看</a></td>
+											<td><a class="" th:href="'detailList.html?id=' + ${item.id}">查看</a></td>
 											<td class="">
 												<select name="_sel">
 													<option th:selected="${item.state == 0}" value="0">初始值</option>
