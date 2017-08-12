@@ -1,39 +1,35 @@
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>详情</title>
-    <link rel="shortcut icon" href="favicon.ico"> 
-    <link href="../commons/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../commons/css/font-awesome.min.css" rel="stylesheet">
-    <!--one -->
-    <link href="../commons/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
-    <link href="../commons/css/animate.min.css" rel="stylesheet">
-    <link href="../commons/css/style.min.css" rel="stylesheet"><base target="_blank">
-    <!-- two -->
-    <link href="../commons/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
-    <link href="../commons/css/animate.min.css" rel="stylesheet">
-    <link href="../commons/css/common.css" rel="stylesheet">
-     <link href="../commons/css/layer.css" rel="stylesheet">
-  </head>
-    <body>
-        <div class="modal-body">
-                                         
-             <table class="table table-striped table-bordered dataTables-example dataTable zero widlk">
-<!-- [{createTime=2017-08-06 16:54:00, cardId=123456789, o_id=1, checkTel=12345678901, id=1, state=0, checkName=孙琪, updateTIme=2017-08-06 16:54:00}] -->
-                            <tbody>
-                            <tr th:each="item,stat : ${list}" class="gradeA odd mail-body text-right tooltip-demo widlk">
-                                <td class="" width="50px" >姓名：</td>
-                                <td class="" th:text="${item.checkName}"></td>
-                                  <td class=""  width="70px">身份证号：</td>
-                                <td class="" th:text="${item.cardId}"></td>
-                                <td class="" width="50px">联系方式：</td>
-                                <td class="" th:text="${item.checkTel}"></td>
-                                </tr>
-                                </tbody>
-                        </table>      
-             </div>
-    </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>详情</title>
+<link href="../commons/css/bootstrap.min.css" rel="stylesheet">
+<link href="../commons/css/font-awesome.min.css" rel="stylesheet">
+<!--one -->
+<link href="../commons/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+<link href="../commons/css/animate.min.css" rel="stylesheet">
+<link href="../commons/css/style.min.css" rel="stylesheet">
+<!-- two -->
+<link href="../commons/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+<link href="../commons/css/animate.min.css" rel="stylesheet">
+<link href="../commons/css/common.css" rel="stylesheet">
+<link href="../commons/css/layer.css" rel="stylesheet">
+</head>
+<body>
+	<div class="modal-body">
+		<table class="table table-striped table-bordered dataTables-example dataTable zero widlk">
+			<tbody>
+				<tr th:each="item,stat : ${list}" class="gradeA odd mail-body text-right tooltip-demo widlk">
+					<td class="" width="50px">姓名：</td>
+					<td class="" th:text="${item.checkName}"></td>
+					<td class="" width="70px">身份证号：</td>
+					<td class="" th:text="${item.cardId}"></td>
+					<td class="" width="50px">联系方式：</td>
+					<td class="" th:text="${item.checkTel}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
 </html>

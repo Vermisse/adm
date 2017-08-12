@@ -24,19 +24,23 @@ public class AutomobileController {
 	private final String format = "yyyy-MM-dd HH:mm:ss";
 	
 	@Autowired 
-	private AutomobileService automobileService;
+	private AutomobileService service;
 	
 	@RequestMapping("list")
 	public String list(String state, Page page, Model model) {
-		List<Map> list = automobileService.queryAutomobileList(state);
+		List<Map> list = service.queryAutomobileList(state, page);
+		int count = service.queryAutomobileListCount(state);
+		page.setCount(count);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("page", page);
 		return "manage/automobile/automobileList";
 	}
 
 	@RequestMapping("update")
 	public String updateAutomobileStateById(String states, String id) {
-		automobileService.updateAutomobileStateById(states, id, DateUtil.getNow(format));
-		return "manage/automobile/automobileList";
+		service.updateAutomobileStateById(states, id, DateUtil.getNow(format));
+		return "redirect:/automobile/list.html";
 	}
 	
 	/**
@@ -53,7 +57,7 @@ public class AutomobileController {
 		String userTel = "";
 		String createTime = DateUtil.getNow(format);
 		String updateTime = DateUtil.getNow(format);
-		automobileService.addAutomobile(userName, userTel, peopleNum, createTime, updateTime, address, checkStartTime, checkEndTime);
+		service.addAutomobile(userName, userTel, peopleNum, createTime, updateTime, address, checkStartTime, checkEndTime);
 	}
 	
 	/**
@@ -65,7 +69,7 @@ public class AutomobileController {
 	 */
 	@RequestMapping("detailList")
 	public String detailList(String id, Page page, Model model) {
-		List<Map> list = automobileService.queryAutomobileDetailList(id);
+		List<Map> list = service.queryAutomobileDetailList(id);
 		model.addAttribute("list", list);
 		return "manage/automobile/automobileList";
 	}

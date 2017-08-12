@@ -1,12 +1,12 @@
 package com.soft.web.service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
 
-import com.soft.web.dao.aircraft.AircraftMapper;
+import com.soft.util.*;
+import com.soft.web.dao.aircraft.*;
 
 /**
  * 机票服务类
@@ -25,10 +25,13 @@ public class AircraftService {
 	 * @param state
 	 * @return
 	 */
-	public List<Map> queryAircraftList(String state) {
-		return mapper.queryAircraftList(state);
+	public List<Map> queryAircraftList(String state, Page page) {
+		return mapper.queryAircraftList(state, page);
 	}
 	
+	public int queryAircraftListCount(String state) {
+		return mapper.queryAircraftListCount(state);
+	}
 	
 	/**
 	 * 根据状态查询机票订单列表

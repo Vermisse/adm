@@ -28,15 +28,19 @@ public class AircraftController {
 	
 	@RequestMapping("list")
 	public String list(String state, Page page, Model model) {
-		List<Map> list = aircraftService.queryAircraftList(state);
+		List<Map> list = aircraftService.queryAircraftList(state, page);
+		int count = aircraftService.queryAircraftListCount(state);
+		page.setCount(count);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("page", page);
 		return "manage/aircraft/aircraftList";
 	}
 
 	@RequestMapping("update")
 	public String updateAircraftStateById(String states, String id) {
 		aircraftService.updateAircraftStateById(states, id, DateUtil.getNow(format));
-		return "manage/aircraft/aircraftList";
+		return "redirect:/aircraft/html.html";
 	}
 	
 	/**

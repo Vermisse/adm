@@ -1,9 +1,10 @@
 package com.soft.web.dao.aircraft;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
+
+import com.soft.util.*;
 
 /**
  * 机票dao
@@ -15,7 +16,10 @@ import org.apache.ibatis.annotations.Param;
 public interface AircraftMapper {
 
 	// 根据状态查询机票订单列表
-	List<Map> queryAircraftList(@Param("state") String state);
+	List<Map> queryAircraftList(@Param("state") String state, @Param("page") Page page);
+
+	// 根据状态查询机票订单列表
+	int queryAircraftListCount(@Param("state") String state);
 
 	// 根据id修改机票当前状态（0初始值；1未沟通；2已沟通；3未成单；已成单；）
 	int updateAircraftStateById(@Param("state") String state, @Param("id") String id,

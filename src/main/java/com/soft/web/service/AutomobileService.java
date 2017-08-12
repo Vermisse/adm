@@ -1,12 +1,12 @@
 package com.soft.web.service;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.stereotype.*;
 
-import com.soft.web.dao.automobile.AutomobileMapper;
+import com.soft.util.*;
+import com.soft.web.dao.automobile.*;
 
 /**
  * 机票服务类
@@ -25,10 +25,13 @@ public class AutomobileService {
 	 * @param state
 	 * @return
 	 */
-	public List<Map> queryAutomobileList(String state) {
-		return mapper.queryAutomobileList(state);
+	public List<Map> queryAutomobileList(String state, Page page) {
+		return mapper.queryAutomobileList(state, page);
 	}
 	
+	public int queryAutomobileListCount(String state) {
+		return mapper.queryAutomobileListCount(state);
+	}
 	
 	/**
 	 * 根据状态查询机票订单列表

@@ -15,6 +15,15 @@
 			and o.state=#{state} 
 		</if>
 		order by o.createTime desc
+		limit ${page.num},${page.size}
+	</select>
+	<select id="queryAircraftListCount" resultType="Integer">
+		select count(*)
+		from tb_Aircraft_order o left join tb_aircraft_order_detail d on o.id=d.t_id
+		where 1=1 and d.state=0 
+		<if test="state != null and state != '-1'">
+			and o.state=#{state} 
+		</if>
 	</select>
 	
 	<!-- 根据id修改机票当前状态（0初始值；1未沟通；2已沟通；3未成单；已成单；）  -->
