@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>轮播图新增</title>
+	<link href="../commons/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../commons/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../commons/css/plugins/iCheck/custom.css" rel="stylesheet">
+	<link href="../commons/css/animate.min.css" rel="stylesheet">
+	<link href="../commons/css/style.min.css" rel="stylesheet">
+	<script src="../commons/js/jquery.min.js"></script>
+	<script src="../commons/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		var chose = function() {
+			$("form .form-group input[type='file']").val("").click();
+		}
+
+		$(function(){
+			$("input[type='file']").change(function() {
+				var rgx = "(.jpg|.gif|.png|.webp)$";
+				var re = new RegExp(rgx);
+				if (!re.test($(this).val())) {
+					alert("图片格式不正确，只能上传.jpg|.gif|.png|.webp格式图片");
+					$(this).val("");
+					return;
+				}
+		
+				$.ajax({
+					type : "POST",
+					url : "../upload.html",
+					contentType : false,
+					processData : false,
+					data : new FormData($("form")[0]),
+					cache : false,
+					success : function(data) {
+						$("form .form-group img").attr("src", "../upload/file/" + data);
+						$("form .form-group img").show();
+						$("form .form-group input[name='filepath']").val(data);
+					},
+					error : function(XMLHttpRequest, textStatus, errorThrown) {
+						alert("上传失败，请检查网络后重试");
+					}
+				});
+			});
+			
+			$("button[type='submit']").click(function() {
+				if($("form .form-group input[name='filepath']").val() == ""){
+					alert("请上传图片");
+					return false;
+				}
+				return true;
+			});
+		});
+	</script>
+</head>
+<body class="gray-bg">
+	<div class="col-sm-12 zero">
+		<div class="ibox float-e-margins">
+			<div class="ibox-title">
+				<h5>门票新增</h5>
+			</div>
+			<div class="ibox-content">
+				<form action="save.html" method="post" class="form-horizontal">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">链接地址</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="url" placeholder="链接地址" maxlength="1024" required />
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">添加图片</label>
+						<div class="col-sm-10">
+							<ul class="tian_jia zero">
+								<li>
+									<img src="" data-action="zoom" style="height: 40px; display: none;" />
+								</li>
+								<li>
+									<button class="btn btn-primary chaxun demo3" type="button"
+										onclick="chose()">点击上传</button>
+								</li>
+							</ul>
+							<input type="file" name="file" style="display: none;" />
+							<input type="hidden" name="filepath" />
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<div class="col-sm-4 col-sm-offset-2">
+							<button class="btn btn-primary" type="submit">保存内容</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -25,7 +25,8 @@
 			t.real_name,
 			t.mobile,
 			t.status,
-			t.create_date
+			t.create_date,
+			t.inside
 		from
 			sys_user t
 		where
@@ -47,5 +48,9 @@
 	</select>
 	<update id="password">
 		update sys_user t set password = #{password} where t.user_id = #{user_id}
+	</update>
+	<update id="inside">
+		update sys_user t set t.inside = 1 - t.inside
+		where t.user_id = #{user_id}
 	</update>
 </mapper>

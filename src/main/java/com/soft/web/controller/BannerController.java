@@ -1,49 +1,45 @@
 package com.soft.web.controller;
 
 import java.io.*;
+import java.util.*;
 
 import javax.servlet.http.*;
 
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.commons.*;
+
+import com.soft.web.service.BannerService;
 
 @Controller
 @RequestMapping("banner")
 public class BannerController {
 	
-	private final String banner = "/upload/banner";
+	@Autowired
+	private BannerService service;
 	
 	@RequestMapping("list")
 	public String list(HttpSession session, Model model) {
-		String path = session.getServletContext().getRealPath(banner);
-		File file = new File(path);
-		File[] banners = file.listFiles();
-		
-		model.addAttribute("banners", banners);
+		List list = service.queryBanner();
+		model.addAttribute("list", list);
 		return "manage/banner";
 	}
-
-	@RequestMapping("fileUpload")
-	public String fileUpload(@RequestParam("file") CommonsMultipartFile file, HttpSession session) throws IOException {
-		String path = session.getServletContext().getRealPath(banner);
-		String fileName = file.getOriginalFilename();
-		String newPath = System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf("."));
-
-		File newFile = new File(path + "/" + newPath);
-		file.transferTo(newFile);
-		
+	
+	@RequestMapping("add")
+	public String add() {
+		return "manage/bannerAdd";
+	}
+	
+	@RequestMapping("save")
+	public String save(String filepath, String url) {
+		service.save(filepath, url);
 		return "redirect:/banner/list.html";
 	}
 
 	@RequestMapping("delete")
-	public String delete(String fileName, HttpSession session) throws IOException {
-		String path = session.getServletContext().getRealPath(banner);
-
-		File file = new File(path + "/" + fileName);
-		file.delete();
-
+	public String delete(Integer id) throws IOException {
+		service.delete(id);
 		return "redirect:/banner/list.html";
 	}
 }

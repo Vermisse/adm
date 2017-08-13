@@ -27,4 +27,10 @@ public class RegisterController {
 		model.addAttribute("page", page);
 		return "manage/register/register_list";
 	}
+	
+	@RequestMapping("inside")
+	public String inside(Integer user_id) {
+		service.inside(user_id);
+		return "redirect:/register/list.html";
+	}
 }

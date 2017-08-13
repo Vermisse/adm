@@ -20,22 +20,9 @@
 	<script src="../commons/js/content.min.js"></script>
 	<script src="../commons/js/plugins/sweetalert/sweetalert.min.js"></script>
 	<script type="text/javascript">
-		$(function() {
-			$("input[type='file']").change(function() {
-				var rgx = "(.jpg|.gif|.png|.webp)$";
-				var re = new RegExp(rgx);
-				if(!re.test($(this).val())){
-					alert("图片格式不正确，只能上传.jpg|.gif|.png|.webp格式图片");
-					$(this).val("");
-					return;
-				}
-				$("form").submit();
-			});
-		});
-		
 		var del = function(n) {
 			if(confirm("确定删除吗"))
-				window.location.href = "delete.html?fileName=" + n;
+				window.location.href = "delete.html?id=" + n;
 		}
 	</script>
 </head>
@@ -54,13 +41,8 @@
 									<div id="DataTables_Table_0_wrapper" class="form-inline" role="grid">
 										<div class="row">
 											<div class="col-sm-12 zero ">
-												<form action="fileUpload.html" method="post" enctype="multipart/form-data">
-													<div id="div_jqGridSelect" class="dataTables_length mohusou">
-														<button class="btn btn-primary chaxun" type="button"
-															data-toggle="modal" onclick="$(this).next().click();">点击上传</button>
-														<input type="file" name="file" style="display:none;" />
-													</div>
-												</form>
+												<button class="btn btn-primary chaxun" type="button"
+													data-toggle="modal" onclick="window.location.href='add.html'">新增</button>
 											</div>
 										</div>
 									</div>
@@ -75,13 +57,13 @@
 										<th class="sorting">图片</th>
 										<th class="sorting">操作</th>
 									</tr>
-									<tr th:each="item,stat : ${banners}" th:if="${item.name != 'user.dir'}" class="gradeA odd mail-body text-right tooltip-demo">
+									<tr th:each="item,stat : ${list}" class="gradeA odd mail-body text-right tooltip-demo">
 										<th th:text="${stat.count}">1</th>
 										<td>
-											<img th:src="${path + '/upload/banner/' + item.name}" data-action="zoom" style="height:40px;" />
+											<img th:src="${path + '/upload/file/' + item.filepath}" data-action="zoom" style="height:40px;" />
 										</td>
 										<td>
-											<a href="javascript:void(0);" class="color_green" th:onclick="'del(\'' + ${item.name} + '\')'">
+											<a href="javascript:void(0);" class="color_green" th:onclick="'del(\'' + ${item.id} + '\')'">
 												删除
 											</a>
 										</td>

@@ -21,4 +21,8 @@ public class UserService {
 	public int queryRegisterCount(String user_name) {
 		return mapper.queryRegisterCount(user_name);
 	}
+	
+	public void inside(Integer user_id) {
+		mapper.inside(user_id);
+	}
 }

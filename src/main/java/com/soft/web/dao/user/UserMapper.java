@@ -15,4 +15,6 @@ public interface UserMapper {
 	int queryRegisterCount(@Param("user_name")String user_name);
 
 	void password(@Param("user_id") Integer user_id, @Param("password") String password);
+	
+	void inside(@Param("user_id") Integer user_id);
 }
