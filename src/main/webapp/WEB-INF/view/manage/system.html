@@ -3,19 +3,19 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>门票新增</title>
+	<title>系统设置</title>
+	<link rel="shortcut icon" href="favicon.ico">
 	<link href="../commons/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../commons/css/font-awesome.min.css" rel="stylesheet">
 	<link href="../commons/css/plugins/iCheck/custom.css" rel="stylesheet">
 	<link href="../commons/css/animate.min.css" rel="stylesheet">
 	<link href="../commons/css/style.min.css" rel="stylesheet">
 	<script src="../commons/js/jquery.min.js"></script>
-	<script src="../commons/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		var chose = function() {
 			$("form .form-group input[type='file']").val("").click();
 		}
-
+		
 		$(function(){
 			$("input[type='file']").change(function() {
 				var rgx = "(.jpg|.gif|.png|.webp)$";
@@ -35,7 +35,6 @@
 					cache : false,
 					success : function(data) {
 						$("form .form-group img").attr("src", "../upload/file/" + data);
-						$("form .form-group img").show();
 						$("form .form-group input[name='filepath']").val(data);
 					},
 					error : function(XMLHttpRequest, textStatus, errorThrown) {
@@ -58,30 +57,32 @@
 	<div class="col-sm-12 zero">
 		<div class="ibox float-e-margins">
 			<div class="ibox-title">
-				<h5>门票新增</h5>
+				<h5>系统设置</h5>
 			</div>
 			<div class="ibox-content">
 				<form action="save.html" method="post" class="form-horizontal">
 					<div class="form-group">
-						<label class="col-sm-2 control-label">门票名称</label>
+						<label class="col-sm-2 control-label">公司名称</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="ticket_name" placeholder="门票名称" maxlength="50" required />
+							<input type="text" name="company" class="form-control"
+								maxlength="50" placeholder="请输入公司名称" th:value="${config.company}" />
 						</div>
 					</div>
 					<div class="hr-line-dashed"></div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">门票价格</label>
+						<label class="col-sm-2 control-label">公司联系电话</label>
 						<div class="col-sm-3">
-							<input type="number" class="form-control" name="ticket_price" placeholder="门票价格" required />
+							<input type="text" name="telephone" class="form-control"
+								maxlength="50" placeholder="请输入公司联系电话" th:value="${config.telephone}" />
 						</div>
 					</div>
 					<div class="hr-line-dashed"></div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">添加图片</label>
+						<label class="col-sm-2 control-label">添加公司logo</label>
 						<div class="col-sm-10">
 							<ul class="tian_jia zero">
 								<li>
-									<img src="" data-action="zoom" style="height: 40px; display: none;" />
+									<img th:src="${path + '/upload/file/' + config.filepath}" data-action="zoom" style="height: 40px;" />
 								</li>
 								<li>
 									<button class="btn btn-primary chaxun demo3" type="button"
@@ -89,7 +90,7 @@
 								</li>
 							</ul>
 							<input type="file" name="file" style="display: none;" />
-							<input type="hidden" name="filepath" />
+							<input type="hidden" name="filepath" th:value="${config.filepath}" />
 						</div>
 					</div>
 					<div class="hr-line-dashed"></div>

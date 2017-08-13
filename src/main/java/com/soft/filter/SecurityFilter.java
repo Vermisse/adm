@@ -12,7 +12,7 @@ import org.springframework.web.servlet.handler.*;
 public class SecurityFilter extends HandlerInterceptorAdapter {
 	
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		Map<String, Object> user = (Map) request.getSession().getAttribute("user");
+		Map<String, Object> user = (Map<String, Object>) request.getSession().getAttribute("user");
 		String url = request.getServletPath().toString();
 		
 		if (user == null) { // 如果未登录直接拦截

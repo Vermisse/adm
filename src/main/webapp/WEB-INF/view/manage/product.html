@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,134 +19,81 @@
 	<script src="../commons/js/bootstrap.min.js"></script>
 	<script src="../commons/js/content.min.js"></script>
 	<script src="../commons/js/plugins/sweetalert/sweetalert.min.js"></script>
+	<script type="text/javascript">
+		var edit = function(n) {
+			window.location.href = "update.html?product_id=" + n;
+		}
+	</script>
 </head>
 <body class="gray-bg">
-	<div class="wrapper wrapper-content animated fadeInRight zero">
-		<div class="row">
-			<div class="col-sm-12">
-				<div class="ibox float-e-margins">
-					<div class="ibox-title">
-						<h5>产品管理</h5>
-					</div>
-					<div class="ibox-content zero">
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="ibox-content">
-									<div id="DataTables_Table_0_wrapper" class="form-inline" role="grid">
-										<div class="row">
-											<div class="col-sm-12 zero ">
-												<div id="div_jqGridSelect" class="dataTables_length mohusou">
-													<label>
-														<input class="form-control input-sm" type="search" />
-													</label>
-													<button class="btn btn-primary chaxun" type="button" data-toggle="modal">查询</button>
-													<button class="btn btn-primary chaxun" type="button" data-toggle="modal" onclick="window.location.href='add.html';">新增</button>
+	<form action="list.html" method="post">
+		<div class="wrapper wrapper-content animated fadeInRight zero">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>产品管理</h5>
+						</div>
+						<div class="ibox-content zero">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="ibox-content">
+										<div id="DataTables_Table_0_wrapper" class="form-inline" role="grid">
+											<div class="row">
+												<div class="col-sm-12 zero ">
+													<div id="div_jqGridSelect" class="dataTables_length mohusou">
+														<label>
+															<input class="form-control input-sm" name="product_name" type="search" placeholder="产品名称" />
+														</label>
+														<button class="btn btn-primary chaxun" type="submit" data-toggle="modal">查询</button>
+														<button class="btn btn-primary chaxun" type="button" data-toggle="modal" onclick="window.location.href='add.html';">新增</button>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
-							<table class="table table-striped table-bordered table-hover dataTables-example dataTable zero">
-								<tbody>
-									<tr role="row">
-										<th class="sorting"></th>
-										<th class="sorting" style="width: 30px;">
-											<div class="checkbox checkbox-success">
-												<input id="checkbox3" type="checkbox">
-											</div>
-										</th>
-										<th class="sorting">序号</th>
-										<th class="sorting">产品名称</th>
-										<th class="sorting">产品图片</th>
-										<th class="sorting">产品价格</th>
-										<th class="sorting">创建时间</th>
-										<th class="sorting">操作</th>
-									</tr>
-
-									<tr class="gradeA odd mail-body text-right tooltip-demo">
-										<td>1</td>
-										<td><div class="checkbox checkbox-success">
-												<input id="checkbox3" type="checkbox">
-											</div></td>
-										<td class="" data-toggle="tooltip" data-placement="bottom"
-											title="一段很长的文字">1</td>
-										<td class="" data-toggle="tooltip" data-placement="bottom"
-											title="一段很长的文字">海南游</td>
-										<td class="" data-toggle="tooltip"><img src="" width="80"
-											height="40"><img src="" width="80" height="40"></td>
-										<td class="" data-toggle="tooltip" data-placement="bottom"
-											title="一段很长的文字">30.00元</td>
-										<td class="" data-toggle="tooltip" data-placement="bottom"
-											title="一段很长的文字">2017.6.5 12:00:00</td>
-										<td class="">
-											<!--<a href="ticket_add.html">编辑</a>|-->
-											<a class="color_red">上架</a>| <a class="color_green">下架</a>
-										</td>
-									</tr>
-
-									<tr class="gradeA odd mail-body text-right tooltip-demo">
-										<td>1</td>
-										<td><div class="checkbox checkbox-success">
-												<input id="checkbox3" type="checkbox">
-											</div></td>
-										<td class="" data-toggle="tooltip" data-placement="bottom"
-											title="一段很长的文字">2</td>
-										<td class="" data-toggle="tooltip" data-placement="bottom"
-											title="一段很长的文字">海南游</td>
-										<td class="" data-toggle="tooltip"><img src="" width="80"
-											height="40"><img src="" width="80" height="40"></td>
-										<td class="" data-toggle="tooltip" data-placement="bottom"
-											title="一段很长的文字">30.00元</td>
-										<td class="" data-toggle="tooltip" data-placement="bottom"
-											title="一段很长的文字">2017.6.5 12:00:00</td>
-										<td class="">
-											<!--<a href="ticket_add.html">编辑</a>|-->
-											<a class="color_red">上架</a>| <a class="color_green">下架</a>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+							<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline" role="grid">
+								<table class="table table-striped table-bordered table-hover dataTables-example dataTable zero">
+									<tbody>
+										<tr role="row">
+											<th class="sorting">序号</th>
+											<th class="sorting">产品名称</th>
+											<th class="sorting">产品价格</th>
+											<th class="sorting">产品图片</th>
+											<th class="sorting">创建时间</th>
+											<th class="sorting">是否上架</th>
+											<th class="sorting">操作</th>
+										</tr>
+										<tr th:each="item,stat : ${list}" class="gradeA odd mail-body text-right tooltip-demo">
+											<td th:text="${stat.count}">1</td>
+											<td th:text="${item.product_name}">海南游</td>
+											<td th:text="${item.product_price}">30.00元</td>
+											<td>
+												<img th:src="${path + '/upload/file/' + item.filepath}" data-action="zoom" style="height:40px;" />
+											</td>
+											<td th:text="${item.create_date}">2017.6.5 12:00:00</td>
+											<td th:text="${item.state == 1 ? '已上架' : '未上架'}">是否上架</td>
+											<td class="">
+												<a href="javascript:void(0);"
+													th:onclick="'edit(\'' + ${item.product_id} + '\')'"
+													th:text="${item.state == 0 ? '上架' : '下架'}"
+													th:class="${item.state == 0 ? 'color_red' : 'color_green'}">
+													启用
+												</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!--分页-->
-	<div class="row fenye zero">
-		<div class="col-sm-6">
-			<div class="dataTables_info">共 57 项</div>
-		</div>
-		<div class="col-sm-6">
-			<div class="dataTables_paginate paging_simple_numbers"
-				id="DataTables_Table_0_paginate">
-				<ul class="pagination">
-					<li class="paginate_button previous disabled" style="margin-right: 15px;">
-						<select class="form-control input-sm fenye2">
-							<option>10</option>
-							<option>50</option>
-							<option>100</option>
-							<option>150</option>
-						</select>
-					</li>
-					<li class="paginate_button previous disabled"><a href="#">首页</a>
-					</li>
-					<li class="paginate_button"><a href="#"><<</i></a></li>
-					<li class="paginate_button "><a href="#"><</a></li>
-					<li class="paginate_button "><input class="fenyek cencetc"
-						value="1"></li>
-					<li class="paginate_button "><a href="#">/10</a></li>
-					<li class="paginate_button "><a href="#">></a></li>
-					<li class="paginate_button "><a href="#">>></a></li>
-					<li class="paginate_button next"><a href="#">尾页</a></li>
-					<li class="paginate_button next"><a data-toggle="modal"
-						data-target="#myModal3"><i class="fa fa-refresh"></i> </a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+		<!-- 分页 -->
+		<div th:substituteby='base/page :: page'></div>
+	</form>
 </body>
 </html>

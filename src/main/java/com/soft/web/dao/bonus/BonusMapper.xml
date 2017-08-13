@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN"   
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.soft.web.dao.bonus.BonusMapper">
+	
+	<select id="getBonus" resultType="java.util.Map">
+		select * from bonus t
+		where t.id = 1
+		limit 1
+	</select>
+	<update id="save">
+		update bonus
+		set
+			const=#{const},
+			rate = #{rate}
+		
+		where id = 1
+	</update>
+</mapper>

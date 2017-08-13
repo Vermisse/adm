@@ -11,5 +11,22 @@
 			and t.product_name like concat('%',#{product_name},'%')
 		</if>
 		order by t.create_date desc
+		limit ${page.num},${page.size}
 	</select>
+	<select id="queryProductCount" resultType="Integer">
+		select count(*) from product t
+		where 1=1
+		<if test="product_name != null and product_name != ''">
+			and t.product_name like concat('%',#{product_name},'%')
+		</if>
+	</select>
+	
+	<insert id="save">
+		insert into product(product_name, product_price, description, feature, price_description, stroke, notice, create_date, filepath, state)
+		values(#{product_name}, #{product_price}, #{description}, #{feature}, #{price_description}, #{stroke}, #{notice}, current_timestamp, #{filepath}, 0)
+	</insert>
+	<update id="update">
+		update product set state = 1 - state
+		where product_id = #{product_id}
+	</update>
 </mapper>
