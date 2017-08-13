@@ -16,6 +16,19 @@ CREATE DATABASE IF NOT EXISTS `db` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `db`;
 
 
+-- 导出  表 db.banner 结构
+CREATE TABLE IF NOT EXISTS `banner` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `filepath` varchar(50) NOT NULL,
+  `url` varchar(1024) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- 正在导出表  db.banner 的数据：~0 rows (大约)
+/*!40000 ALTER TABLE `banner` DISABLE KEYS */;
+/*!40000 ALTER TABLE `banner` ENABLE KEYS */;
+
+
 -- 导出  表 db.bonus 结构
 CREATE TABLE IF NOT EXISTS `bonus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -63,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `sys_config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='系统设置';
 
--- 正在导出表  db.sys_config 的数据：~1 rows (大约)
+-- 正在导出表  db.sys_config 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `sys_config` DISABLE KEYS */;
 INSERT INTO `sys_config` (`id`, `company`, `telephone`, `filepath`) VALUES
 	(1, 'microsoft', '100', '1502600456585.jpg');
@@ -83,12 +96,13 @@ CREATE TABLE IF NOT EXISTS `sys_user` (
   `inside` int(11) NOT NULL DEFAULT '0' COMMENT '是否是内部员工：1-是、0-否',
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
--- 正在导出表  db.sys_user 的数据：~1 rows (大约)
+-- 正在导出表  db.sys_user 的数据：~2 rows (大约)
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
 INSERT INTO `sys_user` (`user_id`, `user_name`, `password`, `real_name`, `mobile`, `invite_id`, `status`, `create_date`, `inside`) VALUES
-	(1, 'admin', '7003d55bebfea70262236628298f4b57', '超级管理员', '15645155210', NULL, 1, NULL, 0);
+	(1, 'admin', '7003d55bebfea70262236628298f4b57', '超级管理员', '15645155210', NULL, 1, NULL, 0),
+	(2, '123', '123', '用户', '11111111111', NULL, 2, '2017-08-13 16:41:53', 0);
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 
 
