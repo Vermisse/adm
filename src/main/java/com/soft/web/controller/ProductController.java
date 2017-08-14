@@ -17,6 +17,9 @@ public class ProductController {
 	@Autowired
 	private ProductService service;
 	
+	@Autowired
+	private AreaService area;
+	
 	@RequestMapping("list")
 	public String list(String product_name, Page page, Model model) {
 		List<Map> list = service.queryProduct(product_name, page);
@@ -29,7 +32,9 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String add() {
+	public String add(Model model) {
+		List<Map<String, Object>> list = area.getProvince();
+		model.addAttribute("province", list);
 		return "manage/productAdd";
 	}
 

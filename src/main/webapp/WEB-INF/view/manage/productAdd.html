@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +18,48 @@
 			$("form .form-group input[type='file']").val("").click();
 		}
 
+		var getCity = function(province_id) {
+			$("select[name='city_id']")[0].length = 1;
+
+			if(province_id == "")
+				return;
+			
+			$.ajax({
+				type : "POST",
+				url : "../area/city.html",
+				data : { province_id : province_id },
+				dataType : "json",
+				success : function(data) {
+					for(var i = 0; i < data.length; i++)
+						$("select[name='city_id']")
+							.append($("<option>")
+									.text(data[i].CityName)
+									.val(data[i].CityID));
+				}
+			});
+		}
+
+		var getDistrict = function(city_id) {
+			$("select[name='district_id']")[0].length = 1;
+
+			if(city_id == "")
+				return;
+			
+			$.ajax({
+				type : "POST",
+				url : "../area/district.html",
+				data : { city_id : city_id },
+				dataType : "json",
+				success : function(data) {
+					for(var i = 0; i < data.length; i++)
+						$("select[name='district_id']")
+							.append($("<option>")
+									.text(data[i].DistrictName)
+									.val(data[i].DistrictID));
+				}
+			});
+		}
+		
 		$(function(){
 		    var ue = UE.getEditor('editor');
 		    var editor1 = UE.getEditor('editor1');
@@ -111,6 +153,36 @@
 						<label class="col-sm-2 control-label">产品简介</label>
 						<div class="col-sm-3">
 							<input type="text" class="form-control" name="description" placeholder="请输产品简介" required />
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">省份</label>
+						<div class="col-sm-3">
+							<select name="province_id" class="form-control" onchange="getCity(this.value)">
+								<option value="">--请选择--</option>
+								<option th:each="item : ${province}"
+									th:value="${item.ProvinceID}"
+									th:text="${item.ProvinceName}"></option>
+							</select>
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">城市</label>
+						<div class="col-sm-3">
+							<select name="city_id" class="form-control" onchange="getDistrict(this.value)">
+								<option value="">--请选择--</option>
+							</select>
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">区县</label>
+						<div class="col-sm-3">
+							<select name="district_id" class="form-control">
+								<option value="">--请选择--</option>
+							</select>
 						</div>
 					</div>
 					<div class="hr-line-dashed"></div>

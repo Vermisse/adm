@@ -14,5 +14,16 @@
 	<context:component-scan base-package="com.soft"/>
 	
 	<!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven>  
+		<mvc:message-converters>  
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=utf-8</value>
+						<value>text/html;charset=UTF-8</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 </beans>

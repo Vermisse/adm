@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN"   
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.soft.web.dao.area.AreaMapper">
+	
+	<select id="getProvince" resultType="java.util.Map">
+		select * from s_province t
+		order by t.provinceId asc
+	</select>
+	<select id="getCity" resultType="java.util.Map">
+		select * from s_city t
+		where t.provinceId = #{province_id}
+		order by t.cityId asc
+	</select>
+	<select id="getDistrict" resultType="java.util.Map">
+		select * from s_district t
+		where t.cityId = #{city_id}
+		order by t.districtId asc
+	</select>
+</mapper>
