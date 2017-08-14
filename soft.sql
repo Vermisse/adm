@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `bonus` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- 正在导出表  db.bonus 的数据：~1 rows (大约)
+-- 正在导出表  db.bonus 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `bonus` DISABLE KEYS */;
 INSERT INTO `bonus` (`id`, `const`, `rate`) VALUES
 	(1, 1.02, 0.02);
@@ -56,13 +56,12 @@ CREATE TABLE IF NOT EXISTS `product` (
   `create_date` date NOT NULL,
   `filepath` varchar(50) NOT NULL,
   `state` int(11) NOT NULL,
+  `district` int(11) NOT NULL,
   PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='产品表';
 
 -- 正在导出表  db.product 的数据：~1 rows (大约)
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` (`product_id`, `product_name`, `product_price`, `description`, `feature`, `price_description`, `stroke`, `notice`, `create_date`, `filepath`, `state`) VALUES
-	(1, 'sdfsdf', 4234, '31313', '<p>sdf</p>', '<p>1234</p>', '<p>vzdg</p>', '<p>vzsdg</p>', '2017-08-12', '1502520747314.jpg', 0);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 
 -- 导出  表 db.sys_config 结构
@@ -74,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `sys_config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='系统设置';
 
--- 正在导出表  db.sys_config 的数据：~1 rows (大约)
+-- 正在导出表  db.sys_config 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `sys_config` DISABLE KEYS */;
 INSERT INTO `sys_config` (`id`, `company`, `telephone`, `filepath`) VALUES
 	(1, 'microsoft', '100', '1502600456585.jpg');
@@ -3404,7 +3403,7 @@ CREATE TABLE IF NOT EXISTS `tb_aircraft_order` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='机票订单表';
 
--- 正在导出表  db.tb_aircraft_order 的数据：~1 rows (大约)
+-- 正在导出表  db.tb_aircraft_order 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tb_aircraft_order` DISABLE KEYS */;
 INSERT INTO `tb_aircraft_order` (`id`, `userName`, `userTel`, `peopleNum`, `departurePlace`, `destination`, `checkStartTime`, `checkEndTime`, `createTime`, `updateTime`, `state`) VALUES
 	(1, '于志强', '15045133902', '3', '大庆', '北京', '2017-08-06 18:42:00', '2017-08-08 18:42:00', '2017-08-6 18:42:00', '2017-08-07 20:02:20', 1);
@@ -3423,7 +3422,7 @@ CREATE TABLE IF NOT EXISTS `tb_aircraft_order_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='飞机票订单详情表';
 
--- 正在导出表  db.tb_aircraft_order_detail 的数据：~1 rows (大约)
+-- 正在导出表  db.tb_aircraft_order_detail 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tb_aircraft_order_detail` DISABLE KEYS */;
 INSERT INTO `tb_aircraft_order_detail` (`id`, `t_id`, `cardId`, `checkName`, `checkTel`, `createTime`, `updateTIme`, `state`) VALUES
 	(1, 1, '230606199202152059', '于志强', '15045133902', '2017-08-07 08:18:00', '2017-08-07 08:18:00', 0);
@@ -3445,7 +3444,7 @@ CREATE TABLE IF NOT EXISTS `tb_automobile_order` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='火车票订单表';
 
--- 正在导出表  db.tb_automobile_order 的数据：~1 rows (大约)
+-- 正在导出表  db.tb_automobile_order 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tb_automobile_order` DISABLE KEYS */;
 INSERT INTO `tb_automobile_order` (`id`, `userName`, `userTel`, `peopleNum`, `departurePlace`, `destination`, `checkStartTime`, `checkEndTime`, `createTime`, `updateTime`, `state`) VALUES
 	(1, '于志强', '15045133902', '3', '大庆', '北京', '2017-08-06 18:42:00', '2017-08-08 18:42:00', '2017-08-6 18:42:00', '2017-08-07 20:32:56', 4);
@@ -3464,7 +3463,7 @@ CREATE TABLE IF NOT EXISTS `tb_automobile_order_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='火车票订单详情表';
 
--- 正在导出表  db.tb_automobile_order_detail 的数据：~1 rows (大约)
+-- 正在导出表  db.tb_automobile_order_detail 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tb_automobile_order_detail` DISABLE KEYS */;
 INSERT INTO `tb_automobile_order_detail` (`id`, `t_id`, `cardId`, `checkName`, `checkTel`, `createTime`, `updateTIme`, `state`) VALUES
 	(1, 1, '230606199202152059', '于志强', '15045133902', '2017-08-07 08:18:00', '2017-08-07 08:18:00', 0);
@@ -3485,7 +3484,7 @@ CREATE TABLE IF NOT EXISTS `tb_hotel_order` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='酒店订单表';
 
--- 正在导出表  db.tb_hotel_order 的数据：~1 rows (大约)
+-- 正在导出表  db.tb_hotel_order 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tb_hotel_order` DISABLE KEYS */;
 INSERT INTO `tb_hotel_order` (`id`, `userName`, `userTel`, `peopleNum`, `address`, `checkStartTime`, `checkEndTime`, `createTime`, `updateTime`, `state`) VALUES
 	(1, '于志强', '15045133902', '3', '大庆', '2017-08-06 18:42:00', '2017-08-08 18:42:00', '2017-08-6 18:42:00', '2017-08-06 21:25:22', 2);
@@ -3505,7 +3504,7 @@ CREATE TABLE IF NOT EXISTS `tb_hotel_order_detail` (
   CONSTRAINT `o_id` FOREIGN KEY (`o_id`) REFERENCES `tb_hotel_order` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='酒店订单详情表';
 
--- 正在导出表  db.tb_hotel_order_detail 的数据：~1 rows (大约)
+-- 正在导出表  db.tb_hotel_order_detail 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tb_hotel_order_detail` DISABLE KEYS */;
 INSERT INTO `tb_hotel_order_detail` (`id`, `o_id`, `checkName`, `checkTel`, `createTime`, `updateTIme`, `state`) VALUES
 	(1, 1, '孙琪', '12345678901', '2017-08-06 16:54:00', '2017-08-06 16:54:00', 0);
@@ -3524,7 +3523,7 @@ CREATE TABLE IF NOT EXISTS `tb_my_order` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='私人订制订单表';
 
--- 正在导出表  db.tb_my_order 的数据：~1 rows (大约)
+-- 正在导出表  db.tb_my_order 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tb_my_order` DISABLE KEYS */;
 INSERT INTO `tb_my_order` (`id`, `userName`, `userTel`, `peopleNum`, `tripMode`, `createTime`, `updateTime`, `state`) VALUES
 	(1, '于志强', '15045133902', '3', '飞机', '2017-08-09 10:26:00', '2017-08-09 11:26:08', 1);
@@ -3546,7 +3545,7 @@ CREATE TABLE IF NOT EXISTS `tb_train_order` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='直通车订单表';
 
--- 正在导出表  db.tb_train_order 的数据：~1 rows (大约)
+-- 正在导出表  db.tb_train_order 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tb_train_order` DISABLE KEYS */;
 INSERT INTO `tb_train_order` (`id`, `userName`, `userTel`, `peopleNum`, `departurePlace`, `destination`, `checkStartTime`, `checkEndTime`, `createTime`, `updateTime`, `state`) VALUES
 	(14, '于志强', '15045133902', '2017-08-07 08:6:00', '哈尔滨', '北京', '2017-08-07 08:6:00', '2017-08-07 08:6:00', '2017-08-07 08:6:00', '2017-08-07 08:22:47', 3);
@@ -3565,7 +3564,7 @@ CREATE TABLE IF NOT EXISTS `tb_train_order_detail` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='直通车订单详情表';
 
--- 正在导出表  db.tb_train_order_detail 的数据：~1 rows (大约)
+-- 正在导出表  db.tb_train_order_detail 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `tb_train_order_detail` DISABLE KEYS */;
 INSERT INTO `tb_train_order_detail` (`id`, `t_id`, `cardId`, `checkName`, `checkTel`, `createTime`, `updateTIme`, `state`) VALUES
 	(14, 14, '230606199202152059', '于志强', '15045133902', '2017-08-07 08:18:00', '2017-08-07 08:18:00', 0);

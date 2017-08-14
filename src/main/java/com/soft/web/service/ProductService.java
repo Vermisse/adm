@@ -2,6 +2,7 @@ package com.soft.web.service;
 
 import java.util.*;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -22,6 +23,10 @@ public class ProductService {
 		return mapper.queryProductCount(product_name);
 	}
 	
+	public Map<String, Object> queryProductOne(Integer product_id) {
+		return mapper.queryProductOne(product_id);
+	}
+	
 	public int save(String product_name,
 			Double product_price,
 			String description,
@@ -29,8 +34,22 @@ public class ProductService {
 			String price_description,
 			String stroke,
 			String notice,
-			String filepath) {
-		return mapper.save(product_name, product_price, description, feature, price_description, stroke, notice, filepath);
+			String filepath,
+			Integer district) {
+		return mapper.save(product_name, product_price, description, feature, price_description, stroke, notice, filepath, district);
+	}
+	
+	public void edit(Integer product_id,
+			String product_name,
+			Double product_price,
+			String description,
+			String feature,
+			String price_description,
+			String stroke,
+			String notice,
+			String filepath,
+			Integer district) {
+		mapper.edit(product_id, product_name, product_price, description, feature, price_description, stroke, notice, filepath, district);
 	}
 	
 	public void update(int product_id) {

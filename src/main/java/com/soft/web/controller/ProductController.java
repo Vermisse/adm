@@ -28,14 +28,14 @@ public class ProductController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
-		return "manage/product";
+		return "manage/product/product";
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add(Model model) {
 		List<Map<String, Object>> list = area.getProvince();
 		model.addAttribute("province", list);
-		return "manage/productAdd";
+		return "manage/product/productAdd";
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
@@ -46,8 +46,38 @@ public class ProductController {
 			String price_description,
 			String stroke,
 			String notice,
-			String filepath) {
-		service.save(product_name, product_price, description, feature, price_description, stroke, notice, filepath);
+			String filepath,
+			Integer district) {
+		service.save(product_name, product_price, description, feature, price_description, stroke, notice, filepath, district);
+		return "redirect:/product/list.html";
+	}
+
+	@RequestMapping(value = "edit", method = RequestMethod.GET)
+	public String edit(int product_id, Model model) {
+		Map<String, Object> product = service.queryProductOne(product_id);
+		List<Map<String, Object>> province = area.getProvince();
+		List<Map<String, Object>> city = area.getCity(((Long) product.get("ProvinceID")).intValue());
+		List<Map<String, Object>> district = area.getDistrict(((Long) product.get("CityID")).intValue());
+
+		model.addAttribute("product", product);
+		model.addAttribute("province", province);
+		model.addAttribute("city", city);
+		model.addAttribute("district", district);
+		return "manage/product/productEdit";
+	}
+
+	@RequestMapping(value = "edit", method = RequestMethod.POST)
+	public String edit(Integer product_id,
+			String product_name,
+			Double product_price,
+			String description,
+			String feature,
+			String price_description,
+			String stroke,
+			String notice,
+			String filepath,
+			Integer district) {
+		service.edit(product_id, product_name, product_price, description, feature, price_description, stroke, notice, filepath, district);
 		return "redirect:/product/list.html";
 	}
 	

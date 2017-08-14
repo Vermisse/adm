@@ -5,7 +5,14 @@
 <mapper namespace="com.soft.web.dao.product.ProductMapper">
 	
 	<select id="queryProduct" resultType="java.util.Map">
-		select * from product t
+		select t.*,c.ProvinceName,b.CityName,a.DistrictName
+		from product t
+		left join s_district a
+		on t.district=a.DistrictID
+		left join s_city b
+		on a.CityID=b.CityID
+		left join s_province c
+		on b.ProvinceID=c.ProvinceID
 		where 1=1
 		<if test="product_name != null and product_name != ''">
 			and t.product_name like concat('%',#{product_name},'%')
@@ -21,10 +28,36 @@
 		</if>
 	</select>
 	
+	<select id="queryProductOne" resultType="java.util.Map">
+		select t.*,c.ProvinceID,b.CityID,a.DistrictID
+		from product t
+		left join s_district a
+		on t.district=a.DistrictID
+		left join s_city b
+		on a.CityID=b.CityID
+		left join s_province c
+		on b.ProvinceID=c.ProvinceID
+		where t.product_id = #{product_id}
+	</select>
+	
 	<insert id="save">
-		insert into product(product_name, product_price, description, feature, price_description, stroke, notice, create_date, filepath, state)
-		values(#{product_name}, #{product_price}, #{description}, #{feature}, #{price_description}, #{stroke}, #{notice}, current_timestamp, #{filepath}, 0)
+		insert into product(product_name, product_price, description, feature, price_description, stroke, notice, create_date, filepath, state, district)
+		values(#{product_name}, #{product_price}, #{description}, #{feature}, #{price_description}, #{stroke}, #{notice}, current_timestamp, #{filepath}, 0, #{district})
 	</insert>
+	<update id="edit">
+		update product
+		set
+			product_name = #{product_name},
+			product_price = #{product_price},
+			description = #{description},
+			feature = #{feature},
+			price_description = #{price_description},
+			stroke = #{stroke},
+			notice = #{notice},
+			filepath = #{filepath},
+			district = #{district}
+		where product_id = #{product_id}
+	</update>
 	<update id="update">
 		update product set state = 1 - state
 		where product_id = #{product_id}
