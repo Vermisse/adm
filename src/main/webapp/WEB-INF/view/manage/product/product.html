@@ -65,6 +65,7 @@
 											<th class="sorting">省份</th>
 											<th class="sorting">城市</th>
 											<th class="sorting">区县</th>
+											<th class="sorting">类型</th>
 											<th class="sorting">创建时间</th>
 											<th class="sorting">是否上架</th>
 											<th class="sorting">操作</th>
@@ -79,6 +80,7 @@
 											<td th:text="${item.ProvinceName}">省份</td>
 											<td th:text="${item.CityName}">城市</td>
 											<td th:text="${item.DistrictName}">区县</td>
+											<td th:text="${item.type_name}">类型</td>
 											<td th:text="${item.create_date}">2017.6.5 12:00:00</td>
 											<td th:text="${item.state == 1 ? '已上架' : '未上架'}">是否上架</td>
 											<td class="">

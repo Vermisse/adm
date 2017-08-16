@@ -4,7 +4,7 @@ import java.util.*;
 
 import org.apache.ibatis.annotations.*;
 
-import com.soft.util.Page;
+import com.soft.util.*;
 
 public interface TicketMapper {
 	
@@ -12,7 +12,14 @@ public interface TicketMapper {
 	
 	int queryTicketsCount(@Param("ticket_name") String ticket_name);
 	
+	Map<String, Object> queryTicket(@Param("ticket_id") int ticket_id);
+	
 	void save(@Param("ticket_name") String ticket_name,
+			@Param("ticket_price") double ticket_price,
+			@Param("filepath") String filepath);
+	
+	void update(@Param("ticket_id") int ticket_id,
+			@Param("ticket_name") String ticket_name,
 			@Param("ticket_price") double ticket_price,
 			@Param("filepath") String filepath);
 

@@ -22,8 +22,19 @@ public class TicketService {
 		return mapper.queryTicketsCount(ticket_name);
 	}
 	
+	public Map<String, Object> queryTicket(int ticket_id) {
+		return mapper.queryTicket(ticket_id);
+	}
+	
 	public void save(String ticket_name, double ticket_price, String filepath) {
 		mapper.save(ticket_name, ticket_price, filepath);
+	}
+	
+	public void update(int ticket_id,
+			String ticket_name,
+			double ticket_price,
+			String filepath) {
+		mapper.update(ticket_id, ticket_name, ticket_price, filepath);
 	}
 
 	public void edit(int ticket_id) {

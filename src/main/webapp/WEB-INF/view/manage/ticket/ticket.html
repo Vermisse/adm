@@ -80,6 +80,7 @@
 													th:class="${item.state == 0 ? 'color_red' : 'color_green'}">
 													启用
 												</a>
+												| <a th:href="'update.html?ticket_id=' + ${item.ticket_id}">修改</a>
 											</td>
 										</tr>
 									</tbody>

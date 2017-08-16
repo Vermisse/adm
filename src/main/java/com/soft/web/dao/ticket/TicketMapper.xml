@@ -22,10 +22,23 @@
 			and t.ticket_name like concat('%',#{ticket_name},'%')
 		</if>
 	</select>
+	<select id="queryTicket" resultType="Map">
+		select t.ticket_id,t.ticket_name,t.ticket_price,t.filepath,t.state,t.create_date
+		from tickets t
+		where t.ticket_id = #{ticket_id}
+	</select>
 	<insert id="save">
 		insert into tickets(ticket_name, ticket_price, filepath, state, create_date)
 		values(#{ticket_name}, #{ticket_price}, #{filepath}, 0, current_date)
 	</insert>
+	<update id="update">
+		update tickets
+		set
+			ticket_name = #{ticket_name},
+			ticket_price = #{ticket_price},
+			filepath = #{filepath}
+		where ticket_id = #{ticket_id}
+	</update>
 	<update id="edit">
 		update tickets t set state = 1 - state where t.ticket_id = #{ticket_id}
 	</update>

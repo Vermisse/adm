@@ -23,7 +23,8 @@ public interface ProductMapper {
 			@Param("stroke") String stroke,
 			@Param("notice") String notice,
 			@Param("filepath") String filepath,
-			@Param("district") Integer district);
+			@Param("district") Integer district,
+			@Param("type") Integer type);
 	
 	void edit(@Param("product_id") Integer product_id,
 			@Param("product_name") String product_name,
@@ -34,7 +35,8 @@ public interface ProductMapper {
 			@Param("stroke") String stroke,
 			@Param("notice") String notice,
 			@Param("filepath") String filepath,
-			@Param("district") Integer district);
+			@Param("district") Integer district,
+			@Param("type") Integer type);
 	
 	void update(@Param("product_id") int product_id);
 }

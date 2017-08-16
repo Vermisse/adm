@@ -18,6 +18,7 @@ CREATE DATABASE IF NOT EXISTS `db` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `db`;
 
 -- 导出  表 db.banner 结构
+DROP TABLE IF EXISTS `banner`;
 CREATE TABLE IF NOT EXISTS `banner` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `filepath` varchar(50) NOT NULL,
@@ -30,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `banner` (
 /*!40000 ALTER TABLE `banner` ENABLE KEYS */;
 
 -- 导出  表 db.bonus 结构
+DROP TABLE IF EXISTS `bonus`;
 CREATE TABLE IF NOT EXISTS `bonus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `const` double NOT NULL,
@@ -44,6 +46,7 @@ INSERT INTO `bonus` (`id`, `const`, `rate`) VALUES
 /*!40000 ALTER TABLE `bonus` ENABLE KEYS */;
 
 -- 导出  表 db.product 结构
+DROP TABLE IF EXISTS `product`;
 CREATE TABLE IF NOT EXISTS `product` (
   `product_id` int(11) NOT NULL AUTO_INCREMENT,
   `product_name` varchar(255) NOT NULL,
@@ -57,14 +60,16 @@ CREATE TABLE IF NOT EXISTS `product` (
   `filepath` varchar(50) NOT NULL,
   `state` int(11) NOT NULL,
   `district` int(11) NOT NULL,
+  `type` int(11) NOT NULL,
   PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='产品表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='产品表';
 
--- 正在导出表  db.product 的数据：~1 rows (大约)
+-- 正在导出表  db.product 的数据：~0 rows (大约)
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 
 -- 导出  表 db.sys_config 结构
+DROP TABLE IF EXISTS `sys_config`;
 CREATE TABLE IF NOT EXISTS `sys_config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `company` varchar(50) NOT NULL,
@@ -79,7 +84,23 @@ INSERT INTO `sys_config` (`id`, `company`, `telephone`, `filepath`) VALUES
 	(1, 'microsoft', '100', '1502600456585.jpg');
 /*!40000 ALTER TABLE `sys_config` ENABLE KEYS */;
 
+-- 导出  表 db.sys_type 结构
+DROP TABLE IF EXISTS `sys_type`;
+CREATE TABLE IF NOT EXISTS `sys_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='类别';
+
+-- 正在导出表  db.sys_type 的数据：~2 rows (大约)
+/*!40000 ALTER TABLE `sys_type` DISABLE KEYS */;
+INSERT INTO `sys_type` (`id`, `name`) VALUES
+	(1, '短途'),
+	(2, '长途');
+/*!40000 ALTER TABLE `sys_type` ENABLE KEYS */;
+
 -- 导出  表 db.sys_user 结构
+DROP TABLE IF EXISTS `sys_user`;
 CREATE TABLE IF NOT EXISTS `sys_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(50) NOT NULL DEFAULT '0' COMMENT '账号',
@@ -102,6 +123,7 @@ INSERT INTO `sys_user` (`user_id`, `user_name`, `password`, `real_name`, `mobile
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 
 -- 导出  表 db.s_city 结构
+DROP TABLE IF EXISTS `s_city`;
 CREATE TABLE IF NOT EXISTS `s_city` (
   `CityID` bigint(20) NOT NULL,
   `CityName` varchar(50) DEFAULT NULL,
@@ -463,6 +485,7 @@ INSERT INTO `s_city` (`CityID`, `CityName`, `ZipCode`, `ProvinceID`, `DateCreate
 /*!40000 ALTER TABLE `s_city` ENABLE KEYS */;
 
 -- 导出  表 db.s_district 结构
+DROP TABLE IF EXISTS `s_district`;
 CREATE TABLE IF NOT EXISTS `s_district` (
   `DistrictID` bigint(20) NOT NULL,
   `DistrictName` varchar(50) DEFAULT NULL,
@@ -3340,6 +3363,7 @@ INSERT INTO `s_district` (`DistrictID`, `DistrictName`, `CityID`, `DateCreated`,
 /*!40000 ALTER TABLE `s_district` ENABLE KEYS */;
 
 -- 导出  表 db.s_province 结构
+DROP TABLE IF EXISTS `s_province`;
 CREATE TABLE IF NOT EXISTS `s_province` (
   `ProvinceID` bigint(20) NOT NULL,
   `ProvinceName` varchar(50) DEFAULT NULL,
@@ -3388,6 +3412,7 @@ INSERT INTO `s_province` (`ProvinceID`, `ProvinceName`, `DateCreated`, `DateUpda
 /*!40000 ALTER TABLE `s_province` ENABLE KEYS */;
 
 -- 导出  表 db.tb_aircraft_order 结构
+DROP TABLE IF EXISTS `tb_aircraft_order`;
 CREATE TABLE IF NOT EXISTS `tb_aircraft_order` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `userName` varchar(200) DEFAULT NULL COMMENT '联系人名字，默认注册人',
@@ -3410,6 +3435,7 @@ INSERT INTO `tb_aircraft_order` (`id`, `userName`, `userTel`, `peopleNum`, `depa
 /*!40000 ALTER TABLE `tb_aircraft_order` ENABLE KEYS */;
 
 -- 导出  表 db.tb_aircraft_order_detail 结构
+DROP TABLE IF EXISTS `tb_aircraft_order_detail`;
 CREATE TABLE IF NOT EXISTS `tb_aircraft_order_detail` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `t_id` int(11) unsigned NOT NULL COMMENT 'tb_aircraft_order表ID',
@@ -3429,6 +3455,7 @@ INSERT INTO `tb_aircraft_order_detail` (`id`, `t_id`, `cardId`, `checkName`, `ch
 /*!40000 ALTER TABLE `tb_aircraft_order_detail` ENABLE KEYS */;
 
 -- 导出  表 db.tb_automobile_order 结构
+DROP TABLE IF EXISTS `tb_automobile_order`;
 CREATE TABLE IF NOT EXISTS `tb_automobile_order` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `userName` varchar(200) DEFAULT NULL COMMENT '联系人名字，默认注册人',
@@ -3451,6 +3478,7 @@ INSERT INTO `tb_automobile_order` (`id`, `userName`, `userTel`, `peopleNum`, `de
 /*!40000 ALTER TABLE `tb_automobile_order` ENABLE KEYS */;
 
 -- 导出  表 db.tb_automobile_order_detail 结构
+DROP TABLE IF EXISTS `tb_automobile_order_detail`;
 CREATE TABLE IF NOT EXISTS `tb_automobile_order_detail` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `t_id` int(11) unsigned NOT NULL COMMENT 'tb_automobile_order表ID',
@@ -3470,6 +3498,7 @@ INSERT INTO `tb_automobile_order_detail` (`id`, `t_id`, `cardId`, `checkName`, `
 /*!40000 ALTER TABLE `tb_automobile_order_detail` ENABLE KEYS */;
 
 -- 导出  表 db.tb_hotel_order 结构
+DROP TABLE IF EXISTS `tb_hotel_order`;
 CREATE TABLE IF NOT EXISTS `tb_hotel_order` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `userName` varchar(200) DEFAULT NULL COMMENT '联系人名字，默认注册人',
@@ -3491,6 +3520,7 @@ INSERT INTO `tb_hotel_order` (`id`, `userName`, `userTel`, `peopleNum`, `address
 /*!40000 ALTER TABLE `tb_hotel_order` ENABLE KEYS */;
 
 -- 导出  表 db.tb_hotel_order_detail 结构
+DROP TABLE IF EXISTS `tb_hotel_order_detail`;
 CREATE TABLE IF NOT EXISTS `tb_hotel_order_detail` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `o_id` int(11) unsigned NOT NULL COMMENT 'tb_hotel_order表ID',
@@ -3511,6 +3541,7 @@ INSERT INTO `tb_hotel_order_detail` (`id`, `o_id`, `checkName`, `checkTel`, `cre
 /*!40000 ALTER TABLE `tb_hotel_order_detail` ENABLE KEYS */;
 
 -- 导出  表 db.tb_my_order 结构
+DROP TABLE IF EXISTS `tb_my_order`;
 CREATE TABLE IF NOT EXISTS `tb_my_order` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `userName` varchar(200) DEFAULT NULL,
@@ -3530,6 +3561,7 @@ INSERT INTO `tb_my_order` (`id`, `userName`, `userTel`, `peopleNum`, `tripMode`,
 /*!40000 ALTER TABLE `tb_my_order` ENABLE KEYS */;
 
 -- 导出  表 db.tb_train_order 结构
+DROP TABLE IF EXISTS `tb_train_order`;
 CREATE TABLE IF NOT EXISTS `tb_train_order` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `userName` varchar(200) DEFAULT NULL COMMENT '联系人名字，默认注册人',
@@ -3552,6 +3584,7 @@ INSERT INTO `tb_train_order` (`id`, `userName`, `userTel`, `peopleNum`, `departu
 /*!40000 ALTER TABLE `tb_train_order` ENABLE KEYS */;
 
 -- 导出  表 db.tb_train_order_detail 结构
+DROP TABLE IF EXISTS `tb_train_order_detail`;
 CREATE TABLE IF NOT EXISTS `tb_train_order_detail` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `t_id` int(11) unsigned NOT NULL COMMENT 'tb_train_order表ID',
@@ -3571,6 +3604,7 @@ INSERT INTO `tb_train_order_detail` (`id`, `t_id`, `cardId`, `checkName`, `check
 /*!40000 ALTER TABLE `tb_train_order_detail` ENABLE KEYS */;
 
 -- 导出  表 db.tb_visa_order 结构
+DROP TABLE IF EXISTS `tb_visa_order`;
 CREATE TABLE IF NOT EXISTS `tb_visa_order` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `userName` varchar(200) DEFAULT NULL COMMENT '联系人名字，默认注册人',
@@ -3590,6 +3624,7 @@ CREATE TABLE IF NOT EXISTS `tb_visa_order` (
 /*!40000 ALTER TABLE `tb_visa_order` ENABLE KEYS */;
 
 -- 导出  表 db.tb_visa_order_detail 结构
+DROP TABLE IF EXISTS `tb_visa_order_detail`;
 CREATE TABLE IF NOT EXISTS `tb_visa_order_detail` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `v_id` int(10) unsigned NOT NULL COMMENT 'tb_visa_order表id',
@@ -3606,6 +3641,7 @@ CREATE TABLE IF NOT EXISTS `tb_visa_order_detail` (
 /*!40000 ALTER TABLE `tb_visa_order_detail` ENABLE KEYS */;
 
 -- 导出  表 db.tickets 结构
+DROP TABLE IF EXISTS `tickets`;
 CREATE TABLE IF NOT EXISTS `tickets` (
   `ticket_id` int(11) NOT NULL AUTO_INCREMENT,
   `ticket_name` varchar(50) NOT NULL,

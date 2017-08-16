@@ -30,17 +30,33 @@ public class TicketController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
-		return "manage/ticket";
+		return "manage/ticket/ticket";
 	}
 	
 	@RequestMapping("add")
 	public String add() {
-		return "manage/ticketAdd";
+		return "manage/ticket/ticketAdd";
 	}
 
 	@RequestMapping("save")
 	public String save(String ticket_name, double ticket_price, String filepath) {
 		service.save(ticket_name, ticket_price, filepath);
+		return "redirect:/ticket/list.html";
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public String update(int ticket_id, Model model) {
+		Map<String, Object> ticket = service.queryTicket(ticket_id);
+		model.addAttribute("ticket", ticket);
+		return "manage/ticket/ticketEdit";
+	}
+
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(int ticket_id,
+			String ticket_name,
+			double ticket_price,
+			String filepath) {
+		service.update(ticket_id, ticket_name, ticket_price, filepath);
 		return "redirect:/ticket/list.html";
 	}
 	

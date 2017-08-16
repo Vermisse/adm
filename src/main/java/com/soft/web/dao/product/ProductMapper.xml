@@ -5,7 +5,7 @@
 <mapper namespace="com.soft.web.dao.product.ProductMapper">
 	
 	<select id="queryProduct" resultType="java.util.Map">
-		select t.*,c.ProvinceName,b.CityName,a.DistrictName
+		select t.*,c.ProvinceName,b.CityName,a.DistrictName,d.name as type_name
 		from product t
 		left join s_district a
 		on t.district=a.DistrictID
@@ -13,6 +13,8 @@
 		on a.CityID=b.CityID
 		left join s_province c
 		on b.ProvinceID=c.ProvinceID
+		inner join sys_type d
+		on t.type = d.id
 		where 1=1
 		<if test="product_name != null and product_name != ''">
 			and t.product_name like concat('%',#{product_name},'%')
@@ -41,8 +43,8 @@
 	</select>
 	
 	<insert id="save">
-		insert into product(product_name, product_price, description, feature, price_description, stroke, notice, create_date, filepath, state, district)
-		values(#{product_name}, #{product_price}, #{description}, #{feature}, #{price_description}, #{stroke}, #{notice}, current_timestamp, #{filepath}, 0, #{district})
+		insert into product(product_name, product_price, description, feature, price_description, stroke, notice, create_date, filepath, state, district, type)
+		values(#{product_name}, #{product_price}, #{description}, #{feature}, #{price_description}, #{stroke}, #{notice}, current_timestamp, #{filepath}, 0, #{district}, #{type})
 	</insert>
 	<update id="edit">
 		update product
@@ -55,7 +57,8 @@
 			stroke = #{stroke},
 			notice = #{notice},
 			filepath = #{filepath},
-			district = #{district}
+			district = #{district},
+			type = #{type}
 		where product_id = #{product_id}
 	</update>
 	<update id="update">

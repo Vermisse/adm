@@ -103,6 +103,11 @@
 					alert("没有选择区县");
 					return false;
 				}
+
+				if($("select[name='type']").val() == "") {
+					alert("没有选择行程");
+					return false;
+				}
 				
 				if(UE.getEditor('editor').getContent() == "") {
 					alert("产品特色不能为空");
@@ -202,6 +207,19 @@
 									th:value="${item.DistrictID}"
 									th:text="${item.DistrictName}"
 									th:selected="${item.DistrictID == product.DistrictID}"></option>
+							</select>
+						</div>
+					</div>
+					<div class="hr-line-dashed"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">类型</label>
+						<div class="col-sm-3">
+							<select name="type" class="form-control">
+								<option value="">--请选择--</option>
+								<option th:each="item : ${type}"
+									th:value="${item.id}"
+									th:text="${item.name}"
+									th:selected="${item.id == product.type}"></option>
 							</select>
 						</div>
 					</div>

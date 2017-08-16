@@ -35,8 +35,9 @@ public class ProductService {
 			String stroke,
 			String notice,
 			String filepath,
-			Integer district) {
-		return mapper.save(product_name, product_price, description, feature, price_description, stroke, notice, filepath, district);
+			Integer district,
+			Integer type) {
+		return mapper.save(product_name, product_price, description, feature, price_description, stroke, notice, filepath, district, type);
 	}
 	
 	public void edit(Integer product_id,
@@ -48,8 +49,9 @@ public class ProductService {
 			String stroke,
 			String notice,
 			String filepath,
-			Integer district) {
-		mapper.edit(product_id, product_name, product_price, description, feature, price_description, stroke, notice, filepath, district);
+			Integer district,
+			Integer type) {
+		mapper.edit(product_id, product_name, product_price, description, feature, price_description, stroke, notice, filepath, district, type);
 	}
 	
 	public void update(int product_id) {
