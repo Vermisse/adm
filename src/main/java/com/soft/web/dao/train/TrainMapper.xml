@@ -8,9 +8,9 @@
 	<select id="queryTrainList" resultType="java.util.Map">
 		select
 			t.id, t.userName,t.userTel,t.peopleNum,t.departurePlace,t.destination,
-			t.checkStartTime,t.checkEndTime,t.state,d.checkName,d.checkTel,d.cardId 
-		from tb_train_order t left join tb_train_order_detail d on t.id=d.t_id
-		where d.state=0 
+			t.checkStartTime,t.checkEndTime,t.state  
+		from tb_train_order t 
+		where 1=1 
 		<if test="state != null and state != '-1'">
 			and t.state=#{state} 
 		</if>
@@ -19,8 +19,8 @@
 	</select>
 	<select id="queryTrainListCount" resultType="Integer">
 		select count(*)
-		from tb_train_order t left join tb_train_order_detail d on t.id=d.t_id
-		where d.state=0 
+		from tb_train_order t 
+		where 1=1 
 		<if test="state != null and state != '-1'">
 			and t.state=#{state} 
 		</if>

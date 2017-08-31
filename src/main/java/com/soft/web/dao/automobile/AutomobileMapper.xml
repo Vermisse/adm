@@ -8,9 +8,9 @@
 	<select id="queryAutomobileList" resultType="java.util.Map">
 		select
 			o.id, o.userName,o.userTel,o.peopleNum,o.departurePlace,o.destination,o.checkStartTime,
-			o.checkEndTime,o.state,d.checkName,d.checkTel
-		from tb_automobile_order o left join tb_automobile_order_detail d on o.id=d.t_id
-		where 1=1 and d.state=0 
+			o.checkEndTime,o.state 
+		from tb_automobile_order o 
+		where 1=1 
 		<if test="state != null and state != '-1'">
 			and o.state=#{state} 
 		</if>
@@ -19,8 +19,8 @@
 	</select>
 	<select id="queryAutomobileListCount" resultType="Integer">
 		select count(*)
-		from tb_automobile_order o left join tb_automobile_order_detail d on o.id=d.t_id
-		where 1=1 and d.state=0 
+		from tb_automobile_order o 
+		where 1=1 
 		<if test="state != null and state != '-1'">
 			and o.state=#{state} 
 		</if>

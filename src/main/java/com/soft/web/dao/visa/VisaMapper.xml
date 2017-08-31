@@ -6,10 +6,10 @@
 	
 	<!-- 根据状态查询签证订单列表 -->
 	<select id="queryVisaList" resultType="java.util.Map">
-		select
-			v.id, v.userName,v.userTel,v.peopleNum,v.address,v.checkStartTime,v.checkEndTime,v.state,d.checkName,d.checkTel
-		from tb_visa_order v left join tb_visa_order_detail d on v.id=d.v_id
-		where d.state=0 
+		select 
+			v.id, v.userName,v.userTel,v.peopleNum,v.address,v.checkStartTime,v.checkEndTime,v.state 
+		from tb_visa_order v 
+		where 1=1 
 		<if test="state != null and state != '-1'">
 			and v.state=#{state} 
 		</if>
@@ -18,8 +18,8 @@
 	</select>
 	<select id="queryVisaListCount" resultType="Integer">
 		select count(*)
-		from tb_visa_order v left join tb_visa_order_detail d on v.id=d.v_id
-		where d.state=0 
+		from tb_visa_order v 
+		where 1=1 
 		<if test="state != null and state != '-1'">
 			and v.state=#{state} 
 		</if>
